@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMWORX — Abdulrahman Mustafa | IT Engineer & Web Developer</title>
+    <meta name="description" content="Portfolio of Abdulrahman Mustafa (AMWORX) — IT Engineer & Web Developer building WordPress sites, C# desktop apps, Flutter mobile apps, and modern web solutions. Based in Syria.">
+    <meta name="keywords" content="Abdulrahman Mustafa, AMWORX, web developer, WordPress, Flutter, React, C#, IT engineer, Syria">
+    <meta name="author" content="Abdulrahman Mustafa">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AMWORX — Abdulrahman Mustafa | IT Engineer & Web Developer">
+    <meta property="og:description" content="IT Engineer & Web Developer building WordPress sites, C# desktop apps, Flutter mobile apps, and modern web solutions.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://amworx.github.io/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#0A0F1E">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&family=Readex+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ink:  { 950:'var(--bg)', 900:'var(--panel)', 800:'var(--panel-2)', accent:'#0A0F1E' },
+                        line: { DEFAULT:'var(--line)', bright:'var(--line-bright)' },
+                        cyan: { DEFAULT:'var(--cyan)' },
+                        amber: { DEFAULT:'var(--amber)' },
+                        rose: { DEFAULT:'var(--rose)' },
+                        paper: { DEFAULT:'var(--paper)', dim:'var(--dim)', faint:'var(--faint)' }
+                    },
+                    fontFamily: {
+                        display: ['"Space Grotesk"','"Readex Pro"','sans-serif'],
+                        mono: ['"JetBrains Mono"','monospace'],
+                        body: ['"Inter"','"Readex Pro"','sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Apply saved theme before paint (avoids flash) -->
+    <script>
+        (function(){
+            try {
+                var t = localStorage.getItem('amworx-theme');
+                if (t !== 'light' && t !== 'dark') {
+                    t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                }
+                document.documentElement.setAttribute('data-theme', t);
+                    } catch(e) {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                    }
+                })();
+    </script>
+
+    <!-- Language pre-paint: DISABLED — switcher hidden, pinned to English (dictionary kept for re-enable later) -->
+    <script>
+        document.documentElement.setAttribute('dir', 'ltr');
+        document.documentElement.setAttribute('lang', 'en');
+    </script>
+
+    <style>
+        /* ===== THEME TOKENS ===== */
+        :root, [data-theme="dark"] {
+            --bg: #0A0F1E;
+            --panel: #0E1630;
+            --panel-2: #16224A;
+            --line: #1E2A4A;
+            --line-bright: #2E4170;
+            --cyan: #22D3EE;
+            --amber: #FBBF24;
+            --rose: #F87171;
+            --paper: #E2E8F0;
+            --dim: #94A3B8;
+            --faint: #64748B;
+            --nav-bg: rgba(10, 15, 30, 0.85);
+            --ticker-bg: rgba(14, 22, 48, 0.65);
+            --grid-color: var(--cyan);
+            --grid-alpha: 0.045;
+            --glow: rgba(34, 211, 238, 0.28);
+            --on-cyan: #0A0F1E;
+        }
+        [data-theme="light"] {
+            --bg: #F8FAFC;
+            --panel: #FFFFFF;
+            --panel-2: #E2E8F0;
+            --line: #CBD5E1;
+            --line-bright: #94A3B8;
+            --cyan: #0891B2;
+            --amber: #D97706;
+            --rose: #E11D48;
+            --paper: #0F172A;
+            --dim: #475569;
+            --faint: #64748B;
+            --nav-bg: rgba(248, 250, 252, 0.85);
+            --ticker-bg: rgba(255, 255, 255, 0.7);
+            --grid-color: var(--cyan);
+            --grid-alpha: 0.06;
+            --glow: rgba(8, 145, 178, 0.22);
+            --on-cyan: #0A0F1E;
+        }
+
+        body {
+            background-color: var(--bg);
+            font-family: 'Inter', 'Readex Pro', sans-serif;
+            color: var(--paper);
+            overflow-x: hidden;
+        }
+
+        /* ===== RTL ===== */
+        /* Arabic joins Arabic glyphs with their native font; Latin fallback stays Inter */
+        [lang="ar"] body, [lang="ar"] .font-display, [lang="ar"] h1, [lang="ar"] h2, [lang="ar"] h3, [lang="ar"] h4, [lang="ar"] h5,
+        [lang="ar"] p, [lang="ar"] span, [lang="ar"] a, [lang="ar"] label, [lang="ar"] button, [lang="ar"] input, [lang="ar"] textarea {
+            font-family: 'Readex Pro', 'Inter', sans-serif;
+        }
+        /* Keep terminal / code runs in mono regardless of direction */
+        [lang="ar"] .font-mono, [lang="ar"] .annot, [lang="ar"] .contact-key, [lang="ar"] .contact-value, [lang="ar"] .contact-arrow,
+        [lang="ar"] .boot-scan-label, [lang="ar"] .cursor {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Reversed marquee ticker in RTL */
+        [dir="rtl"] .ticker-track { animation-direction: reverse; }
+        [dir="rtl"] .ticker {
+            -webkit-mask-image: linear-gradient(270deg, transparent, #000 10%, #000 90%, transparent);
+            mask-image: linear-gradient(270deg, transparent, #000 10%, #000 90%, transparent);
+        }
+        /* Contact row hover slide — point inward for RTL */
+        [dir="rtl"] .contact-row:hover { transform: translateX(-4px); }
+        [dir="rtl"] .contact-row:hover .contact-arrow { transform: translateX(-4px); }
+        /* App tile arrow */
+        [dir="rtl"] .app-tile:hover .app-arrow, [dir="rtl"] .featured:hover .app-arrow { transform: translateX(-4px); }
+        /* Arabic has no uppercase and wide letter-spacing breaks cursive joining */
+        [lang="ar"] .annot { text-transform: none; letter-spacing: 0; }
+        [lang="ar"] .boot-scan-label { text-transform: none; letter-spacing: 0; }
+
+        /* Blueprint engineering grid overlay */
+        .blueprint {
+            background-image:
+                linear-gradient(color-mix(in srgb, var(--grid-color) var(--grid-alpha), transparent) 1px, transparent 1px),
+                linear-gradient(90deg, color-mix(in srgb, var(--grid-color) var(--grid-alpha), transparent) 1px, transparent 1px);
+            background-size: 44px 44px;
+        }
+        .blueprint-dense {
+            background-image:
+                linear-gradient(color-mix(in srgb, var(--grid-color) calc(var(--grid-alpha) * 1.5), transparent) 1px, transparent 1px),
+                linear-gradient(90deg, color-mix(in srgb, var(--grid-color) calc(var(--grid-alpha) * 1.5), transparent) 1px, transparent 1px);
+            background-size: 22px 22px;
+        }
+
+        /* Technical annotation label */
+        .annot {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--rose);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .annot::before {
+            content: '';
+            width: 2rem;
+            height: 1px;
+            background: var(--rose);
+            opacity: 0.6;
+        }
+
+        /* Marquee ticker */
+        .ticker {
+            overflow: hidden;
+            white-space: nowrap;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            background: var(--ticker-bg);
+            -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+        }
+        .ticker-track {
+            display: inline-flex;
+            animation: ticker 30s linear infinite;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Terminal typing cursor */
+        .cursor { display:inline-block; width:0.6em; height:1.1em; background:var(--cyan); vertical-align:text-bottom; animation: blink 1s step-end infinite; }
+        @keyframes blink { 50% { opacity:0; } }
+
+        /* Card hover lift */
+        .lift { transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s, background .35s; }
+        .lift:hover {
+            transform: translateY(-6px);
+            border-color: color-mix(in srgb, var(--cyan) 50%, transparent);
+            box-shadow: 0 18px 50px -20px var(--glow);
+        }
+
+        /* Cyan button glow */
+        .glow { transition: box-shadow .3s ease, transform .3s ease; }
+        .glow:hover { box-shadow: 0 10px 40px -12px var(--glow); }
+
+        /* Corner brackets (schematic) */
+        .bracket {
+            position: relative;
+        }
+        .bracket::before, .bracket::after {
+            content: '';
+            position: absolute;
+            width: 16px; height: 16px;
+            border: 2px solid var(--cyan);
+            transition: all .3s ease;
+        }
+        .bracket::before { top:-1px; left:-1px; border-right:0; border-bottom:0; }
+        .bracket::after { bottom:-1px; right:-1px; border-left:0; border-top:0; }
+
+        /* Selection */
+        ::selection { background: var(--cyan); color: #0A0F1E; }
+        ::-webkit-scrollbar { width:6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--line-bright); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
+
+        .nav-blur { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); background: var(--nav-bg); }
+        .panel-soft { background: color-mix(in srgb, var(--panel) 42%, transparent); }
+
+        /* Reveal */
+        .reveal { opacity:0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+        .reveal.visible { opacity:1; transform:none; }
+
+        /* Work item filter */
+        .work-item { transition: opacity .4s ease, transform .4s ease; }
+        .work-item.hide { display:none; }
+
+        /* Grouped app tiles (Klear platform) */
+        .app-tile {
+            display: flex; flex-direction: column;
+            background: var(--bg);
+            border: 1px solid var(--line);
+            border-radius: 0.5rem;
+            padding: 1.25rem;
+            transition: transform .3s cubic-bezier(.2,.8,.2,1), border-color .3s, box-shadow .3s, background .3s;
+        }
+        .app-tile:hover {
+            transform: translateY(-4px);
+            border-color: var(--cyan);
+            background: color-mix(in srgb, var(--cyan) 5%, var(--bg));
+            box-shadow: 0 14px 34px -20px var(--glow);
+        }
+        .app-arrow { display:inline-block; transition: transform .3s ease; }
+        .app-tile:hover .app-arrow { transform: translateX(4px); }
+
+        /* Featured build cards — unified panel design */
+        .featured { display: flex; flex-direction: column; }
+        .featured:hover .app-arrow { transform: translateX(4px); }
+        @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.35; } }
+        .pulse-dot { animation: pulse 2.2s ease-in-out infinite; }
+
+        /* Filter buttons — active state uses --on-cyan for guaranteed contrast */
+        #filters button {
+            color: var(--dim);
+            border: 1px solid var(--line);
+            transition: background .3s, color .3s, border-color .3s;
+        }
+        #filters button:hover { color: var(--cyan); border-color: var(--cyan); }
+        #filters button.active {
+            background: var(--cyan);
+            border-color: var(--cyan);
+            color: var(--on-cyan);
+            font-weight: 700;
+        }
+
+        /* Theme toggle */
+        .theme-btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 2.4rem; height: 2.4rem;
+            border: 1px solid var(--line); border-radius: 0.5rem;
+            color: var(--dim); background: transparent;
+            transition: border-color .3s, color .3s, box-shadow .3s;
+        }
+        .theme-btn:hover { color: var(--cyan); border-color: var(--cyan); }
+        .theme-btn svg { width: 1.05rem; height: 1.05rem; }
+
+        /* ===== BOOT SPLASH — full-page fingerprint scanner ===== */
+        /* Adapted from uiverse.io/SRIMANKS/lazy-jellyfish-5 (MIT) */
+        .boot-splash {
+            position: fixed; inset: 0; z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.75rem;
+            overflow: hidden;
+            background: var(--bg);
+            transition: opacity .5s ease, visibility .5s ease;
+        }
+        /* Blueprint grid overlay — matches the page hero background */
+        .boot-splash::before {
+            content: "";
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(color-mix(in srgb, var(--grid-color) var(--grid-alpha), transparent) 1px, transparent 1px),
+                linear-gradient(90deg, color-mix(in srgb, var(--grid-color) var(--grid-alpha), transparent) 1px, transparent 1px);
+            background-size: 44px 44px;
+        }
+        /* Full-page breathing cyan glow — expands the animation's atmosphere */
+        .boot-splash::after {
+            content: "";
+            position: absolute; left: 50%; top: 50%;
+            width: 120vmax; height: 120vmax;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle at center, color-mix(in srgb, var(--cyan) 16%, transparent) 0%, transparent 55%);
+            animation: fp-breathe 4s ease-in-out infinite;
+        }
+        .boot-splash.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+        .finger-card {
+            position: relative;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            z-index: 1;
+        }
+        .finger-card svg {
+            filter: drop-shadow(0px 0px 12px #3fefef) drop-shadow(0px 0px 55px #3fefef);
+            animation: fp-float 4s ease-in-out infinite;
+        }
+        .finger-card path { stroke-dasharray: 90; animation: fp-loop 4s infinite; }
+        .boot-scan {
+            position: relative; z-index: 1;
+            width: min(22rem, 78vw);
+            display: flex; flex-direction: column; align-items: center; gap: 0.9rem;
+        }
+        .boot-scan-label {
+            color: var(--cyan);
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
+            animation: fp-dots 2s infinite;
+        }
+        .boot-scan-bar {
+            height: 0.15rem; width: 100%; border-radius: 10px;
+            background-color: var(--cyan); opacity: 0.85;
+            animation: fp-grow 4s infinite;
+            filter: drop-shadow(0px 0px 10px #3fefef) drop-shadow(0px 0px 14px #3fefef);
+        }
+        @keyframes fp-loop {
+            0% { stroke-dashoffset: 50; stroke-dasharray: 90; }
+            50% { stroke-dashoffset: 100; stroke-dasharray: 50; }
+            100% { stroke-dashoffset: 50; stroke-dasharray: 90; }
+        }
+        @keyframes fp-dots {
+            0% { content: "scanning."; }
+            25% { content: "scanning.."; }
+            50% { content: "scanning..."; }
+            75% { content: "scanning"; }
+            100% { content: "scanning."; }
+        }
+        @keyframes fp-dots-ar {
+            0% { content: "فحص."; }
+            25% { content: "فحص.."; }
+            50% { content: "فحص..."; }
+            75% { content: "فحص"; }
+            100% { content: "فحص."; }
+        }
+        [lang="ar"] .boot-scan-label { animation-name: fp-dots-ar; }
+        @keyframes fp-grow {
+            0% { width: 0%; }
+            50% { width: 100%; }
+            100% { width: 0%; }
+        }
+        @keyframes fp-breathe {
+            0%, 100% { opacity: 0.55; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+        }
+        @keyframes fp-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* ===== CONTACT ROWS — contact section ===== */
+        .contact-rows {
+            display: flex; flex-direction: column;
+            border: 1px solid var(--line); border-radius: 0.5rem; overflow: hidden;
+        }
+        .contact-row {
+            display: flex; align-items: center; gap: 1rem;
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--line);
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .contact-row:last-child { border-bottom: none; }
+        .contact-row:hover { background: color-mix(in srgb, var(--cyan) 10%, transparent); transform: translateX(4px); }
+        .contact-key { min-width: 6.5rem; font-size: 0.8rem; letter-spacing: 0.04em; }
+        .contact-value { font-size: 0.9rem; flex: 1; }
+        .contact-row:hover .contact-value { color: var(--cyan); }
+        .contact-arrow { font-size: 0.9rem; transition: transform 0.2s ease; }
+        .contact-row:hover .contact-arrow { transform: translateX(4px); color: var(--cyan); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- ================= BOOT SPLASH ================= -->
+    <!-- Fingerprint scanner card — adapted from uiverse.io/SRIMANKS/lazy-jellyfish-5 (MIT) -->
+    <div id="bootSplash" class="boot-splash" aria-hidden="true">
+        <div class="finger-card">
+            <svg width="100" height="200" viewBox="0 0 90 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M53.6937 1.8999C47.463 -0.352255 40.9068 -0.674076 34.5272 1.32166C34.0341 1.4759 33.7207 2.18011 33.8272 2.89456C33.9336 3.609 34.4196 4.06315 34.9126 3.90891C41.0222 1.99765 47.3157 2.31279 53.302 4.48699C67.6179 9.68648 79.5341 25.284 84.0727 45.6586C85.8279 53.538 86.5735 61.9282 86.7228 70.7212C86.7352 71.4519 87.1541 72.0296 87.6583 72.0117C88.1625 71.9937 88.5612 71.3868 88.5488 70.6561C88.3975 61.7424 87.6431 53.1364 85.8446 44.9969C81.1312 23.6662 68.6768 7.31577 53.6937 1.8999Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M29.8925 5.90399C30.3787 5.70962 30.6642 4.98086 30.53 4.27628C30.3959 3.57169 29.893 3.15808 29.4068 3.35245C22.735 6.01959 13.3498 15.2355 7.54967 27.5472C7.54742 27.552 7.54518 27.5568 7.54297 27.5616C2.45006 38.6835 -0.742467 52.6602 0.148878 66.2225C0.149727 66.2354 0.150707 66.2483 0.151817 66.2612C0.365435 68.7376 0.724051 71.2094 1.08309 73.6842C1.83929 78.8964 2.59735 84.1216 2.00648 89.4297C1.92616 90.1512 2.26471 90.8306 2.76266 90.9469C3.26061 91.0633 3.72939 90.5727 3.80972 89.8512C4.42737 84.3025 3.66044 78.8903 2.89335 73.477C2.5386 70.9735 2.18381 68.4697 1.96593 65.9522C1.1276 53.1368 4.1472 39.7675 9.0616 29.0324C14.6411 17.1932 23.6761 8.38911 29.8925 5.90399Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M41.877 8.86083C53.3431 7.84619 64.8069 14.6272 72.5058 27.6184C72.8344 28.1729 72.7906 29.0085 72.4079 29.4846C72.0253 29.9608 71.4487 29.8973 71.1201 29.3428C63.7987 16.9887 52.8899 10.5356 41.9828 11.5032C41.9789 11.5036 41.975 11.5039 41.9711 11.5042C28.1777 12.4713 15.2601 26.031 10.5087 45.0313C10.3369 45.7185 9.81317 46.0737 9.33895 45.8247C8.86474 45.5757 8.61962 44.8167 8.79146 44.1295C13.7968 24.1134 27.3611 9.88221 41.877 8.86083Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M75.2881 33.4001C75.0069 32.7933 74.4395 32.6318 74.0208 33.0393C73.602 33.4468 73.4905 34.269 73.7718 34.8758C78.0398 44.085 79.8045 54.1063 80.5021 65.9987C80.5448 66.727 80.9869 67.2672 81.4895 67.2053C81.9921 67.1433 82.3648 66.5028 82.3221 65.7745C81.6092 53.6222 79.7893 43.1126 75.2881 33.4001Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M81.7115 71.3933C82.2149 71.3477 82.6485 71.9021 82.68 72.6316C83.0242 80.6118 83.0274 89.6407 82.4182 96.313C82.352 97.0376 81.893 97.5473 81.393 97.4514C80.893 97.3555 80.5413 96.6904 80.6074 95.9658C81.1946 89.5349 81.1978 80.6975 80.857 72.7967C80.8256 72.0672 81.2081 71.4389 81.7115 71.3933Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M9.1296 51.4413C9.24798 50.7309 8.94648 50.0158 8.45618 49.8443C7.96588 49.6727 7.47245 50.1096 7.35407 50.8201C6.68375 54.8432 6.33577 58.9762 6.32198 63.1129C6.30777 67.3766 6.85639 71.5385 7.40523 75.702C7.8542 79.1079 8.30331 82.5149 8.44458 85.9795C8.63015 90.5307 7.96954 95.0885 6.82798 99.4264C6.64827 100.109 6.88462 100.874 7.35591 101.135C7.82719 101.395 8.35493 101.052 8.53465 100.37C9.74129 95.7842 10.4727 90.8451 10.2679 85.8234C10.1276 82.3825 9.67857 78.9953 9.22967 75.6095C8.68192 71.478 8.13443 67.3485 8.1485 63.1257C8.16161 59.1949 8.49231 55.2662 9.1296 51.4413Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M33.0936 22.032C33.2815 22.7103 33.0545 23.4809 32.5864 23.7533C23.1183 29.2632 16.0083 41.697 14.5579 56.3591C13.9519 62.4848 14.6066 68.5525 15.2611 74.6187C15.6297 78.0349 15.9982 81.4506 16.1415 84.8757C16.4522 92.3028 15.8684 100.461 12.5328 107.883C12.2576 108.496 11.6918 108.669 11.2692 108.27C10.8465 107.871 10.727 107.052 11.0022 106.439C14.0413 99.6763 14.6165 92.1647 14.3183 85.0359C14.1729 81.5605 13.8067 78.1053 13.4407 74.6523C12.784 68.4569 12.1281 62.2685 12.7498 55.9835C14.2985 40.3282 21.8707 27.1369 31.9057 21.2971C32.3738 21.0247 32.9056 21.3538 33.0936 22.032Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M65.1548 29.5667C57.6854 19.4288 46.8594 15.8905 37.0204 19.0178C36.5278 19.1744 36.216 19.8801 36.324 20.594C36.4321 21.308 36.9191 21.7598 37.4118 21.6032C46.7286 18.6419 56.9225 22.0199 63.9062 31.4986C69.7925 39.4878 73.2107 51.1126 74.1054 63.7958C74.1567 64.523 74.6051 65.0521 75.1068 64.9778C75.6086 64.9035 75.9738 64.2538 75.9225 63.5267C74.9934 50.3568 71.431 38.085 65.1548 29.5667Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M75.7314 69.8294C76.2331 69.7547 76.6817 70.2836 76.7332 71.0107C77.6005 83.2483 77.2267 96.4661 75.9173 109.253C75.8433 109.976 75.3788 110.475 74.8799 110.368C74.381 110.26 74.0365 109.587 74.1106 108.864C75.4017 96.2554 75.7654 83.2621 74.9162 71.2811C74.8647 70.554 75.2297 69.9041 75.7314 69.8294Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M43.8912 26.8962C29.8964 26.8962 18.5255 43.0755 18.5255 63.0789C18.5255 65.2157 18.6564 67.3093 18.9058 69.3451C18.994 70.0648 19.4681 70.5446 19.9647 70.4168C20.4613 70.289 20.7924 69.602 20.7042 68.8824C20.4733 66.9976 20.3521 65.0587 20.3521 63.0789C20.3521 44.578 30.8769 29.543 43.8912 29.543C49.7724 29.543 55.1459 32.6147 59.2702 37.6903C59.6547 38.1634 60.231 38.0954 60.5575 37.5382C60.884 36.9811 60.837 36.1459 60.4525 35.6728C56.0081 30.2033 50.2186 26.8962 43.8912 26.8962Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M62.4988 40.6072C62.8628 40.1013 63.441 40.1188 63.7901 40.6464C67.8205 46.7369 69.1107 56.3093 69.9643 64.3426C70.9259 73.3915 71.0727 82.2193 71.0727 86.3123C71.0727 87.0432 70.6638 87.6357 70.1594 87.6357C69.6551 87.6357 69.2462 87.0432 69.2462 86.3123C69.2462 82.2855 69.1007 73.6071 68.1591 64.7455C67.3665 57.2875 66.2241 48.1486 62.4717 42.4784C62.1226 41.9508 62.1347 41.1131 62.4988 40.6072Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M70.8408 93.8916C70.8809 93.1629 70.5058 92.5252 70.003 92.4671C69.5002 92.409 69.0601 92.9526 69.0201 93.6812C68.5716 101.833 67.9855 109.976 66.7963 117.498C66.6837 118.211 66.9909 118.921 67.4826 119.084C67.9742 119.247 68.4641 118.802 68.5767 118.089C69.7972 110.369 70.3911 102.065 70.8408 93.8916Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M20.3758 74.216C20.8707 74.0748 21.3509 74.5417 21.4484 75.2588C23.3794 89.4686 22.0454 102.377 16.9318 113.685C16.6553 114.296 16.0892 114.467 15.6673 114.066C15.2454 113.665 15.1276 112.845 15.404 112.234C20.2154 101.595 21.5103 89.4138 19.6562 75.7702C19.5588 75.0531 19.881 74.3572 20.3758 74.216Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M43.8912 35.507C34.8067 35.507 25.8947 45.6973 24.9851 58.5043C24.5869 64.1112 25.1463 69.6341 25.7059 75.1592C26.1946 79.9836 26.6835 84.8098 26.535 89.695C26.1954 100.876 23.9316 110.105 20.0418 117.706C19.7413 118.293 19.8262 119.122 20.2314 119.557C20.6365 119.993 21.2085 119.87 21.509 119.283C25.6345 111.22 28.0056 101.472 28.3598 89.8114C28.5076 84.9483 28.0172 80.1375 27.5272 75.3298C26.9669 69.8321 26.4069 64.3385 26.802 58.7753C27.6011 47.5245 35.5925 38.1539 43.8912 38.1539C47.7618 38.1539 57.7763 41.191 60.9619 56.2288C62.9582 65.6525 63.5027 78.406 63.0192 90.7961C62.5357 103.185 61.0317 115.034 59.0093 122.632C58.8278 123.314 59.0621 124.08 59.5327 124.343C60.0033 124.606 60.532 124.266 60.7135 123.584C62.8293 115.635 64.3534 103.486 64.8428 90.9455C65.3321 78.4067 64.7943 65.3002 62.708 55.4521C59.1719 38.7595 48.0871 35.507 43.8912 35.507Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M29.8367 113.687C30.2591 114.086 30.3782 114.906 30.1027 115.518C29.5364 116.776 29.0382 118.093 28.54 119.409C28.0417 120.726 27.5434 122.043 26.977 123.301C26.7015 123.913 26.1356 124.086 25.7131 123.687C25.2907 123.287 25.1716 122.467 25.4471 121.855C26.0135 120.597 26.5116 119.28 27.0099 117.964C27.5081 116.647 28.0064 115.331 28.5728 114.072C28.8484 113.46 29.4142 113.287 29.8367 113.687Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M37.6567 49.2448C38.076 48.8384 38.1885 48.0165 37.9081 47.409C37.6277 46.8014 37.0605 46.6383 36.6412 47.0447C33.0248 50.5499 30.8061 55.37 30.8061 62.4311C30.8061 66.6357 31.3201 70.0725 31.8473 73.5975C32.6362 78.8723 33.1713 84.1358 33.0751 89.5538C32.9584 96.1329 32.0701 102.145 30.3625 107.872C30.1624 108.543 30.3756 109.322 30.8386 109.612C31.3016 109.902 31.8391 109.593 32.0392 108.922C33.8447 102.866 34.7787 96.519 34.9011 89.6218C35.001 83.9918 34.4511 78.52 33.6328 73.0378C33.1044 69.4974 32.6326 66.3365 32.6326 62.4311C32.6326 56.3811 34.4693 52.3342 37.6567 49.2448Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M41.2213 44.5949C45.011 43.4753 49.0892 44.8587 52.0909 48.3794C57.4527 54.6682 58.1657 66.1368 58.7436 75.4302L58.773 75.9036C59.5197 87.8832 58.665 99.519 56.9432 111.204C56.8379 111.919 56.3526 112.375 55.8594 112.222C55.3661 112.07 55.0516 111.366 55.1569 110.652C56.8529 99.1415 57.6795 87.7826 56.9539 76.1418C56.9299 75.7563 56.906 75.3655 56.8818 74.9699L56.8815 74.9642C56.3682 66.5659 55.7253 56.0474 50.9418 50.4368C48.3754 47.4268 44.8557 46.2225 41.5861 47.1884C41.0919 47.3344 40.6096 46.8721 40.5088 46.156C40.4081 45.4398 40.727 44.7409 41.2213 44.5949Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M55.6524 117.79C55.7769 117.081 55.4815 116.361 54.9927 116.181C54.5039 116 54.0068 116.428 53.8823 117.137C53.3302 120.279 52.4795 123.116 51.4008 125.727C51.1417 126.355 51.2826 127.167 51.7154 127.543C52.1482 127.918 52.709 127.714 52.968 127.087C54.1305 124.272 55.0534 121.199 55.6524 117.79Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M51.1864 98.5844C51.6873 98.6702 52.0453 99.3283 51.9861 100.054C51.1235 110.616 49.1763 120.037 46.0517 128.207C45.8072 128.846 45.2514 129.077 44.8102 128.723C44.369 128.369 44.2096 127.563 44.4541 126.924C47.4443 119.105 49.3324 110.027 50.1722 99.7431C50.2314 99.0172 50.6856 98.4985 51.1864 98.5844Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M50.9982 61.737C50.3651 56.8346 47.4614 53.0844 43.9364 53.0844C39.1631 53.0844 35.814 60.0567 36.9942 66.5435C38.9911 77.9939 39.3189 89.0296 37.9671 99.6584L37.9661 99.6662C36.793 109.209 34.5403 117.794 31.4674 125.069C31.204 125.692 31.3393 126.507 31.7695 126.889C32.1997 127.27 32.7619 127.074 33.0252 126.451C36.2238 118.879 38.5532 109.98 39.7639 100.134C41.1675 89.0953 40.8197 77.6727 38.7639 65.8881L38.7614 65.8742C37.8762 61.0219 40.3436 55.7313 43.9364 55.7313C46.5292 55.7313 48.7183 58.4952 49.2017 62.215C50.531 73.3886 51.2234 83.7501 50.7304 92.6713C50.6902 93.3999 51.0651 94.0378 51.5679 94.0961C52.0707 94.1545 52.5109 93.6111 52.5511 92.8826C53.0621 83.6357 52.3409 73.019 51.0006 61.7556C50.9998 61.7494 50.999 61.7432 50.9982 61.737Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M41.2113 119.056C41.6599 119.39 41.8367 120.187 41.6061 120.838L39.1862 127.662C38.9557 128.312 38.4051 128.568 37.9565 128.234C37.5079 127.9 37.3311 127.102 37.5616 126.452L39.9815 119.628C40.2121 118.978 40.7626 118.722 41.2113 119.056Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M44.6157 63.0132C44.5003 62.3016 44.0088 61.8603 43.5177 62.0275C43.0267 62.1946 42.7222 62.9069 42.8375 63.6185C45.9173 82.6163 45.4943 99.2983 41.743 113.509C41.5628 114.192 41.7986 114.957 42.2697 115.218C42.7408 115.479 43.2687 115.137 43.449 114.455C47.3604 99.6374 47.758 82.3966 44.6157 63.0132Z" stroke="#00E0FF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+        </div>
+        <div class="boot-scan">
+            <div class="boot-scan-label" data-i18n="boot_scan">scanning</div>
+            <div class="boot-scan-bar"></div>
+        </div>
+        <div class="font-mono text-[11px] tracking-[0.25em] text-paper-faint text-center">
+            <div class="text-cyan mb-1">AMI-BOOT 0.9.6</div>
+            <div data-i18n="boot_fingerprint">verifying fingerprint</div>
+        </div>
+    </div>
+    <script>
+        (function () {
+            var s = document.getElementById('bootSplash');
+            if (!s) return;
+            function hide() {
+                if (s.dataset.done) return;
+                s.dataset.done = '1';
+                s.classList.add('hide');
+            }
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { hide(); return; }
+            var t = setTimeout(hide, 7000);
+            window.addEventListener('load', function () { clearTimeout(t); setTimeout(hide, 2600); });
+        })();
+    </script>
+
+    <!-- ================= NAV ================= -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur border-b" style="border-color: var(--line)">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <a href="#" class="flex items-center gap-2 font-display font-bold text-lg tracking-wide text-paper">
+                    <span class="w-8 h-8 rounded bg-gradient-to-br from-cyan to-violet-500 flex items-center justify-center text-ink-accent font-black">A</span>
+                    AMWORX
+                </a>
+
+                <div class="hidden md:flex items-center gap-7">
+                    <a href="#about" class="font-mono text-xs text-paper-dim hover:text-cyan transition-colors" data-i18n="nav_about">about()</a>
+                    <a href="#services" class="font-mono text-xs text-paper-dim hover:text-cyan transition-colors" data-i18n="nav_services">services()</a>
+                    <a href="#work" class="font-mono text-xs text-paper-dim hover:text-cyan transition-colors" data-i18n="nav_work">work()</a>
+                    <a href="#github" class="font-mono text-xs text-paper-dim hover:text-cyan transition-colors" data-i18n="nav_repos">repos()</a>
+                    <button id="langToggle" class="theme-btn font-mono text-xs font-bold hidden" aria-label="Switch to Arabic">EN</button>
+                    <button id="themeToggle" class="theme-btn" aria-label="Toggle theme" data-i18n-aria="theme_aria">
+                        <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
+                        <svg id="moonIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"/></svg>
+                    </button>
+                    <a href="#contact" class="rtl:mr-1 rtl:ml-0 ml-1 px-5 py-2.5 bg-cyan text-ink-accent font-mono text-xs font-bold rounded glow" data-i18n="nav_contact">contact()</a>
+                </div>
+
+                <div class="flex items-center gap-3 md:hidden">
+                    <button id="langToggleMobile" class="theme-btn font-mono text-xs font-bold hidden" aria-label="Switch to Arabic">EN</button>
+                    <button id="themeToggleMobile" class="theme-btn" aria-label="Toggle theme" data-i18n-aria="theme_aria">
+                        <svg id="sunIconM" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
+                        <svg id="moonIconM" class="hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"/></svg>
+                    </button>
+                    <button id="menuBtn" class="text-2xl text-paper leading-none">☰</button>
+                </div>
+            </div>
+        </div>
+        <div id="mobileMenu" class="md:hidden hidden border-t px-6 py-4 space-y-3" style="border-color: var(--line); background: var(--panel)">
+            <a href="#about" class="block font-mono text-sm text-paper-dim" data-i18n="nav_about">about()</a>
+            <a href="#services" class="block font-mono text-sm text-paper-dim" data-i18n="nav_services">services()</a>
+            <a href="#work" class="block font-mono text-sm text-paper-dim" data-i18n="nav_work">work()</a>
+            <a href="#github" class="block font-mono text-sm text-paper-dim" data-i18n="nav_repos">repos()</a>
+            <a href="#contact" class="block font-mono text-sm text-cyan" data-i18n="nav_contact">contact()</a>
+        </div>
+    </nav>
+
+    <!-- ================= HERO / BOOT ================= -->
+    <header class="relative blueprint min-h-screen flex flex-col justify-center overflow-hidden">
+        <!-- corner coordinates -->
+        <div class="absolute top-24 left-6 font-mono text-[10px] text-paper-faint">X:47.32 <br>Y:36.51</div>
+        <div class="absolute bottom-24 right-6 font-mono text-[10px] text-paper-faint text-right rtl:text-left">GRID:44px <br>REV:09.06.26</div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-28 pb-40 w-full">
+            <div class="annot mb-6 reveal" data-i18n="hero_boot">system boot — Abdulrahman.Mustafa</div>
+
+            <h1 class="font-display font-bold leading-none tracking-tight reveal" style="transition-delay:.05s">
+                <span class="block text-paper-dim text-lg lg:text-2xl font-medium mb-3 font-mono text-cyan" data-i18n="hero_whoami">$ whoami</span>
+                <span class="block text-4xl sm:text-6xl lg:text-7xl xl:text-8xl text-paper">Abdulrahman</span>
+                <span class="block text-4xl sm:text-6xl lg:text-7xl xl:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-cyan to-violet-500">Mustafa</span>
+            </h1>
+
+            <div class="mt-8 font-mono text-sm sm:text-base text-paper-dim reveal" style="transition-delay:.1s">
+                <span data-i18n="hero_role1" class="text-cyan">IT Engineer</span><span class="text-paper-faint"> &amp; </span><span data-i18n="hero_role2" class="text-cyan">Web Developer</span>
+                <span class="text-paper-faint">// WordPress, C#, Flutter, React, SQL</span>
+            </div>
+
+            <p class="mt-6 max-w-xl text-paper-dim leading-relaxed reveal" style="transition-delay:.15s" data-i18n-html="hero_desc">
+                I engineer web platforms, desktop applications, and mobile experiences from the ground up.
+                Based in <span class="text-paper font-medium">Syria</span> — delivering for clients worldwide.
+            </p>
+
+            <div class="mt-10 flex flex-wrap gap-4 reveal" style="transition-delay:.2s">
+                <a href="#work" class="lift bg-cyan text-ink-accent font-mono text-sm font-bold px-7 py-3.5 rounded glow" data-i18n="hero_open_work">open_work()</a>
+                <a href="#contact" class="lift border text-paper font-mono text-sm font-bold px-7 py-3.5 rounded hover:border-cyan hover:text-cyan" style="border-color: var(--line)" data-i18n="hero_start_project">start_project()</a>
+            </div>
+        </div>
+
+        <!-- Terminal boot log at bottom -->
+        <div class="absolute bottom-0 inset-x-0 reveal">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8 pb-8">
+                <div class="font-mono text-xs space-y-1 text-paper-faint">
+                    <div><span class="text-cyan">$</span> npm run deploy</div>
+                    <div><span class="text-emerald-500">✓</span> status: <span class="text-cyan">available</span> · location: <span class="text-cyan">SY</span> · stack: <span class="text-cyan">full</span></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= TICKER ================= -->
+    <div class="ticker py-4">
+        <div class="ticker-track font-mono text-sm text-paper-dim">
+            <span class="mx-6">WORDPRESS <span class="text-line-bright">//</span></span>
+            <span class="mx-6">C# <span class="text-line-bright">//</span></span>
+            <span class="mx-6">FLUTTER <span class="text-line-bright">//</span></span>
+            <span class="mx-6">REACT <span class="text-line-bright">//</span></span>
+            <span class="mx-6">SQL SERVER <span class="text-line-bright">//</span></span>
+            <span class="mx-6">SUPABASE <span class="text-line-bright">//</span></span>
+            <span class="mx-6">TYPESCRIPT <span class="text-line-bright">//</span></span>
+            <span class="mx-6">DOCKER <span class="text-line-bright">//</span></span>
+            <span class="mx-6">PYTHON <span class="text-line-bright">//</span></span>
+            <span class="mx-6">PINE SCRIPT <span class="text-line-bright">//</span></span>
+            <span class="mx-6">MQL5 <span class="text-line-bright">//</span></span>
+            <span class="mx-6">LINUX <span class="text-line-bright">//</span></span>
+            <!-- duplicate for seamless loop -->
+            <span class="mx-6">WORDPRESS <span class="text-line-bright">//</span></span>
+            <span class="mx-6">C# <span class="text-line-bright">//</span></span>
+            <span class="mx-6">FLUTTER <span class="text-line-bright">//</span></span>
+            <span class="mx-6">REACT <span class="text-line-bright">//</span></span>
+            <span class="mx-6">SQL SERVER <span class="text-line-bright">//</span></span>
+            <span class="mx-6">SUPABASE <span class="text-line-bright">//</span></span>
+            <span class="mx-6">TYPESCRIPT <span class="text-line-bright">//</span></span>
+            <span class="mx-6">DOCKER <span class="text-line-bright">//</span></span>
+            <span class="mx-6">PYTHON <span class="text-line-bright">//</span></span>
+            <span class="mx-6">PINE SCRIPT <span class="text-line-bright">//</span></span>
+            <span class="mx-6">MQL5 <span class="text-line-bright">//</span></span>
+            <span class="mx-6">LINUX <span class="text-line-bright">//</span></span>
+        </div>
+    </div>
+
+    <!-- ================= ABOUT ================= -->
+    <section id="about" class="relative py-24 lg:py-32">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-14">
+                <div class="reveal">
+                    <div class="annot mb-5" data-i18n="annot_about">01 — about</div>
+                    <h2 class="font-display text-3xl lg:text-5xl font-bold text-paper mb-8">
+                        <span data-i18n="about_h1_a" class="block">The Engineer</span>
+                        <span data-i18n="about_h1_b" class="block">Behind the Work</span>
+                    </h2>
+                    <div class="space-y-5 text-paper-dim leading-relaxed">
+                        <p data-i18n-html="about_p1">An experienced <span class="text-cyan">IT Engineer</span> and <span class="text-cyan">remote IT supporter</span> who specializes in core operating systems, <span class="text-paper">C#</span> and <span class="text-paper">WordPress</span> development — with extensive <span class="text-paper">SQL</span> expertise.</p>
+                        <p data-i18n-html="about_p2">Beyond classic IT, I build modern products: cross-platform <span class="text-paper">Flutter</span> apps, <span class="text-paper">React</span> dashboards, and <span class="text-paper">Supabase</span>-backed platforms.</p>
+                        <p data-i18n-html="about_p3">Based in <span class="text-paper">Syria</span>, I work with clients worldwide — combining global best practices with genuine local understanding of complex environments.</p>
+                    </div>
+                </div>
+
+                <div class="reveal" style="transition-delay:.1s">
+                    <div class="annot mb-5" data-i18n="annot_capabilities">02 — capabilities</div>
+                    <h3 class="font-mono text-lg text-cyan mb-6">// technology.cs</h3>
+                    <div class="flex flex-wrap gap-2.5">
+                        <span class="px-3.5 py-2 font-mono text-xs border text-paper-dim hover:border-cyan hover:text-cyan transition-colors rounded" style="border-color: var(--line)">WordPress</span>
+                        <span class="px-3.5 py-2 font-mono text-xs border text-paper-dim hover:border-cyan hover:text-cyan transition-colors rounded" style="border-color: var(--line)">C#</span>
+                        <span class="px-3.5 py-2 font-mono text-xs border text-paper-dim hover:border-cyan hover:text-cyan transition-colors rounded" style="border-color: var(--line)">Flutter</span>
+                        <span class="px-3.5 py-2 font-mono text-xs border text-paper-dim hover:border-cyan hover:text-cyan transition-colors rounded" style="border-color: var(--line)">React</span>
+                        <span class="px-3.5 py-2 font-mono text-xs border text-paper-dim hover:border-cyan hover:text-cyan transition-colors rounded" style="border-color: var(--line)">SQL Server</span>
+                        <span class="px-3.5 py-2 font-mono text-xs border text-paper-dim hover:border-cyan hover:text-cyan transition-colors rounded" style="border-color: var(--line)">Supabase</span>
+                        <span class="px-3.5 py-2 font-mono text-xs border text-paper-dim hover:border-cyan hover:text-cyan transition-colors rounded" style="border-color: var(--line)">TypeScript</span>
+                        <span class="px-3.5 py-2 font-mono text-xs border text-paper-dim hover:border-cyan hover:text-cyan transition-colors rounded" style="border-color: var(--line)">Python</span>
+                        <span class="px-3.5 py-2 font-mono text-xs border text-paper-dim hover:border-cyan hover:text-cyan transition-colors rounded" style="border-color: var(--line)">Docker</span>
+                        <span class="px-3.5 py-2 font-mono text-xs border text-paper-dim hover:border-cyan hover:text-cyan transition-colors rounded" style="border-color: var(--line)">WinForms</span>
+                        <span class="px-3.5 py-2 font-mono text-xs border text-paper-dim hover:border-cyan hover:text-cyan transition-colors rounded" style="border-color: var(--line)">MQL5</span>
+                        <span class="px-3.5 py-2 font-mono text-xs border text-paper-dim hover:border-cyan hover:text-cyan transition-colors rounded" style="border-color: var(--line)">Pine Script</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SERVICES ================= -->
+    <section id="services" class="relative py-24 lg:py-32 panel-soft border-y" style="border-color: var(--line)">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="mb-14 reveal">
+                <div class="annot mb-5" data-i18n="annot_services">03 — services</div>
+                <h2 class="font-display text-3xl lg:text-5xl font-bold text-paper" data-i18n="services_heading">What I Build</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div class="lift p-7 border rounded-lg" style="background: var(--panel); border-color: var(--line)">
+                    <div class="font-mono text-cyan text-sm mb-3">// web</div>
+                    <h3 class="font-display text-xl font-semibold text-paper mb-2" data-i18n="serv_web_title">Web Development</h3>
+                    <p class="text-sm text-paper-dim leading-relaxed mb-4" data-i18n="serv_web_desc">WordPress sites and React web apps — from corporate websites to complex platforms.</p>
+                    <a href="https://amworx.github.io/client-intake/" target="_blank" class="font-mono text-xs text-cyan hover:underline"><span data-i18n="serv_wp_link">request a wordpress site</span><span data-i18n-arrow> →</span></a>
+                </div>
+
+                <div class="lift p-7 border rounded-lg" style="background: var(--panel); border-color: var(--line)">
+                    <div class="font-mono text-cyan text-sm mb-3">// desktop</div>
+                    <h3 class="font-display text-xl font-semibold text-paper mb-2" data-i18n="serv_desktop_title">Desktop Applications</h3>
+                    <p class="text-sm text-paper-dim leading-relaxed" data-i18n="serv_desktop_desc">C# / WinForms business systems — POS, financial &amp; management tools with SQL Server.</p>
+                </div>
+
+                <div class="lift p-7 border rounded-lg" style="background: var(--panel); border-color: var(--line)">
+                    <div class="font-mono text-cyan text-sm mb-3">// mobile</div>
+                    <h3 class="font-display text-xl font-semibold text-paper mb-2" data-i18n="serv_mobile_title">Mobile Applications</h3>
+                    <p class="text-sm text-paper-dim leading-relaxed" data-i18n="serv_mobile_desc">Cross-platform Flutter apps with beautiful UI, GPS, and realtime Supabase backends.</p>
+                </div>
+
+                <div class="lift p-7 border rounded-lg" style="background: var(--panel); border-color: var(--line)">
+                    <div class="font-mono text-cyan text-sm mb-3">// data</div>
+                    <h3 class="font-display text-xl font-semibold text-paper mb-2" data-i18n="serv_data_title">Database &amp; Backend</h3>
+                    <p class="text-sm text-paper-dim leading-relaxed" data-i18n="serv_data_desc">SQL database design, optimization, and modern BaaS backends (Supabase, REST).</p>
+                </div>
+
+                <div class="lift p-7 border rounded-lg" style="background: var(--panel); border-color: var(--line)">
+                    <div class="font-mono text-cyan text-sm mb-3">// it</div>
+                    <h3 class="font-display text-xl font-semibold text-paper mb-2" data-i18n="serv_it_title">IT Solutions &amp; Support</h3>
+                    <p class="text-sm text-paper-dim leading-relaxed" data-i18n="serv_it_desc">System administration, remote support, Docker deployment, and network tooling.</p>
+                </div>
+
+                <div class="lift p-7 border rounded-lg" style="background: var(--panel); border-color: var(--line)">
+                    <div class="font-mono text-cyan text-sm mb-3">// trades</div>
+                    <h3 class="font-display text-xl font-semibold text-paper mb-2" data-i18n="serv_trades_title">Trading Automation</h3>
+                    <p class="text-sm text-paper-dim leading-relaxed" data-i18n="serv_trades_desc">Pine Script indicators and MQL5 expert advisors for market automation.</p>
+                </div>
+            </div>
+
+            <!-- WordPress intake CTA banner -->
+            <div class="mt-12 reveal lift p-8 lg:p-10 border rounded-lg bracket" style="background: var(--panel); border-color: var(--line)">
+                <div class="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10">
+                    <div class="flex-1">
+                        <div class="font-mono text-xs text-cyan mb-3">$ need_a_site()</div>
+                        <h3 class="font-display text-2xl lg:text-3xl font-bold text-paper mb-3" data-i18n="cta_wp_heading">Going with WordPress?</h3>
+                        <p class="text-paper-dim leading-relaxed text-sm lg:text-base" data-i18n="cta_wp_desc">Skip the endless back-and-forth. Fill in the 2-minute client intake form — you'll get a tailored proposal with package recommendation, timeline, and pricing.</p>
+                    </div>
+                    <a href="https://amworx.github.io/client-intake/" target="_blank"
+                       class="inline-flex items-center gap-2 bg-cyan text-ink-accent font-mono text-sm font-bold px-8 py-4 rounded glow whitespace-nowrap">
+                        request_wp_site()<span data-i18n-arrow> →</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= WORK ================= -->
+    <section id="work" class="relative py-24 lg:py-32">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-wrap items-end justify-between gap-6 mb-10 reveal">
+                <div>
+                    <div class="annot mb-5" data-i18n="annot_portfolio">04 — portfolio</div>
+                    <h2 class="font-display text-3xl lg:text-5xl font-bold text-paper" data-i18n="work_heading">Selected Work</h2>
+                </div>
+                <div class="flex flex-wrap gap-2" id="filters">
+                    <button data-f="all" class="active px-4 py-2 font-mono text-xs rounded" data-i18n="filter_all">all</button>
+                    <button data-f="web" class="px-4 py-2 font-mono text-xs rounded" data-i18n="filter_web">web</button>
+                    <button data-f="desktop" class="px-4 py-2 font-mono text-xs rounded" data-i18n="filter_desktop">desktop</button>
+                    <button data-f="mobile" class="px-4 py-2 font-mono text-xs rounded" data-i18n="filter_mobile">mobile</button>
+                </div>
+            </div>
+
+            <!-- FEATURED — unified design cards (Klear + Routa) -->
+            <h3 class="font-mono text-sm text-cyan mb-5 reveal" data-i18n="featured_heading">-- featured builds</h3>
+            <div class="grid md:grid-cols-2 gap-6 mb-16">
+                <article class="featured lift p-6 lg:p-7 border rounded-lg bracket" style="background: var(--panel); border-color: var(--line)">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-mono text-[11px] text-cyan">◆ Klear</span>
+                        <span class="font-mono text-[11px] text-paper-faint">mobile · flutter</span>
+                    </div>
+                    <h4 class="font-display text-2xl font-semibold text-paper mb-2" data-i18n="klear_feat_title">Car Wash Platform</h4>
+                    <p class="text-sm text-paper-dim leading-relaxed mb-6" data-i18n="klear_feat_desc">3 apps · one realtime backend — Flutter × React × Supabase. Client app, staff app, and admin dashboard synced in realtime.</p>
+                    <div class="mt-auto flex flex-wrap gap-3 font-mono text-[11px] text-cyan">
+                        <a href="https://github.com/amworx/klear" target="_blank" class="hover:underline">klear<span class="app-arrow"> ↗</span></a>
+                        <a href="https://github.com/amworx/klear-staff" target="_blank" class="hover:underline">klear-staff<span class="app-arrow"> ↗</span></a>
+                        <a href="https://github.com/amworx/klear-admin" target="_blank" class="hover:underline">klear-admin<span class="app-arrow"> ↗</span></a>
+                    </div>
+                </article>
+
+                <article class="featured lift p-6 lg:p-7 border rounded-lg bracket" style="background: var(--panel); border-color: var(--line)">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-mono text-[11px] text-cyan">◆ Routa</span>
+                        <span class="font-mono text-[11px] text-paper-faint">android · kotlin</span>
+                    </div>
+                    <h4 class="font-display text-2xl font-semibold text-paper mb-2" data-i18n="routa_feat_title">Network Diagnostics</h4>
+                    <p class="text-sm text-paper-dim leading-relaxed mb-6" data-i18n="routa_feat_desc">Precision network-test console for Android — ping, DNS, speed, traceroute, MTR, port scan &amp; Wi-Fi analysis. Clean Architecture + MVVM, "Field Instrument" UI. In development.</p>
+                    <div class="mt-auto">
+                        <a href="https://github.com/amworx/routa" target="_blank" class="font-mono text-xs text-cyan hover:underline">github.com/amworx/routa<span class="app-arrow"> ↗</span></a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- WEBSITES -->
+            <h3 class="font-mono text-sm text-cyan mb-5 reveal" data-i18n="web_heading">-- web projects</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
+                <article data-cat="web" class="work-item lift p-6 border rounded-lg bracket" style="background: var(--panel); border-color: var(--line)">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-mono text-[11px] text-rose">● LIVE</span>
+                        <span class="font-mono text-[11px] text-paper-faint">wordpress</span>
+                    </div>
+                    <h4 class="font-display text-lg font-semibold text-paper mb-2">ARTIT Consultancy</h4>
+                    <p class="text-sm text-paper-dim leading-relaxed mb-5" data-i18n="artit_desc">Corporate website for an international consultancy covering capacity building, TPM, and research.</p>
+                <a href="https://artitconsultancy.com" target="_blank" class="font-mono text-xs text-cyan hover:underline">artitconsultancy.com ↗</a>
+                </article>
+
+                <article data-cat="web" class="work-item lift p-6 border rounded-lg bracket" style="background: var(--panel); border-color: var(--line)">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-mono text-[11px] text-rose">● LIVE</span>
+                        <span class="font-mono text-[11px] text-paper-faint">wordpress</span>
+                    </div>
+                    <h4 class="font-display text-lg font-semibold text-paper mb-2">Crest Point (CPCD)</h4>
+                    <p class="text-sm text-paper-dim leading-relaxed mb-5" data-i18n="cpcd_desc">International consultancy site — multi-branch presence across 10 countries with portfolio &amp; network sections.</p>
+                    <a href="http://crestpointccb.com" target="_blank" class="font-mono text-xs text-cyan hover:underline">crestpointccb.com ↗</a>
+                </article>
+
+                <article data-cat="web" class="work-item lift p-6 border rounded-lg bracket" style="background: var(--panel); border-color: var(--line)">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-mono text-[11px] text-rose">● LIVE</span>
+                        <span class="font-mono text-[11px] text-paper-faint">wordpress · rtl</span>
+                    </div>
+                    <h4 class="font-display text-lg font-semibold text-paper mb-2">STOOS Consulting</h4>
+                    <p class="text-sm text-paper-dim leading-relaxed mb-5" data-i18n="stoos_desc">Bilingual M&amp;E and training firm site with global reach across the MENA region and Africa.</p>
+                    <a href="https://stoosconsulting.com" target="_blank" class="font-mono text-xs text-cyan hover:underline">stoosconsulting.com ↗</a>
+                </article>
+            </div>
+
+            <!-- DESKTOP -->
+            <h3 class="font-mono text-sm text-cyan mb-5 reveal" data-i18n="desktop_heading">-- desktop projects</h3>
+            <div class="grid md:grid-cols-2 gap-5 mb-16">
+                <article data-cat="desktop" class="work-item lift p-6 border rounded-lg bracket" style="background: var(--panel); border-color: var(--line)">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-mono text-[11px] text-amber">▲ C#</span>
+                        <span class="font-mono text-[11px] text-paper-faint">winforms</span>
+                    </div>
+                    <h4 class="font-display text-lg font-semibold text-paper mb-2">SimpleEx</h4>
+                    <p class="text-sm text-paper-dim leading-relaxed mb-5" data-i18n="simpleex_desc">Financial remittance &amp; currency exchange system — transfers, funds, agents, account transactions, reporting.</p>
+                    <a href="https://mostaql.com/portfolio/395487-simpleex" target="_blank" class="font-mono text-xs text-cyan hover:underline"><span data-i18n="view_project">view_project</span> ↗</a>
+                </article>
+
+                <article data-cat="desktop" class="work-item lift p-6 border rounded-lg bracket" style="background: var(--panel); border-color: var(--line)">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-mono text-[11px] text-amber">▲ C#</span>
+                        <span class="font-mono text-[11px] text-paper-faint">winforms</span>
+                    </div>
+                    <h4 class="font-display text-lg font-semibold text-paper mb-2">Alver POS</h4>
+                    <p class="text-sm text-paper-dim leading-relaxed mb-5" data-i18n="alver_desc">Complete point-of-sale system — inventory, sales, bills, and comprehensive business reporting.</p>
+                    <a href="https://mostaql.com/portfolio/395486-alver-pos" target="_blank" class="font-mono text-xs text-cyan hover:underline"><span data-i18n="view_project">view_project</span> ↗</a>
+                </article>
+            </div>
+
+            <!-- MOBILE -->
+            <h3 class="font-mono text-sm text-cyan mb-5 reveal" data-i18n="mobile_heading">-- mobile projects</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+                <!-- Klear platform — grouped -->
+                <article data-cat="mobile" class="work-item lift p-6 md:col-span-2 lg:col-span-3 border rounded-lg bracket" style="background: var(--panel); border-color: var(--line)">
+                    <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                        <div class="flex items-center gap-4">
+                            <span class="font-mono text-[11px] text-cyan">◆ Flutter × React</span>
+                            <span class="font-mono text-[11px] text-paper-faint hidden sm:inline">supabase · gps · dashboard</span>
+                        </div>
+                        <div class="flex items-center gap-2 font-mono text-[11px] text-rose">
+                            <span class="pulse-dot">●</span><span data-i18n="klear_platform_tag">3 apps — one platform</span>
+                        </div>
+                    </div>
+
+                    <h4 class="font-display text-2xl font-semibold text-paper mb-2" data-i18n="klear_platform_title">Klear — Car Wash Platform</h4>
+                    <p class="text-sm text-paper-dim leading-relaxed max-w-2xl mb-6" data-i18n="klear_platform_desc">One realtime Supabase backend powering three apps: the customer booking app, the captain staff tool, and the admin control center.</p>
+
+                    <div class="grid sm:grid-cols-3 gap-4">
+                        <div class="app-tile reveal" style="transition-delay:.05s">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="font-mono text-[10px] text-cyan">◆ Flutter</span>
+                                <span class="font-mono text-[10px] text-paper-faint">supabase</span>
+                            </div>
+                            <h5 class="font-display text-base font-semibold text-paper mb-1.5" data-i18n="klear_app_title">Klear — Car Wash</h5>
+                            <p class="text-xs text-paper-dim leading-relaxed mb-4 flex-1" data-i18n="klear_app_desc">Customer app — book a wash at your location and time, live tracking, in-app payment.</p>
+                            <a href="https://github.com/amworx/klear" target="_blank" class="font-mono text-xs text-cyan">github<span class="app-arrow"> ↗</span></a>
+                        </div>
+
+                        <div class="app-tile reveal" style="transition-delay:.12s">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="font-mono text-[10px] text-cyan">◆ Flutter</span>
+                                <span class="font-mono text-[10px] text-paper-faint">gps · rtl</span>
+                            </div>
+                            <h5 class="font-display text-base font-semibold text-paper mb-1.5" data-i18n="klear_staff_title">Klear Staff App</h5>
+                            <p class="text-xs text-paper-dim leading-relaxed mb-4 flex-1" data-i18n="klear_staff_desc">Captain app — job tracking, open-pool claiming, live GPS, client chat. Arabic-first.</p>
+                            <a href="https://github.com/amworx/klear-staff" target="_blank" class="font-mono text-xs text-cyan">github<span class="app-arrow"> ↗</span></a>
+                        </div>
+
+                        <div class="app-tile reveal" style="transition-delay:.19s">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="font-mono text-[10px] text-cyan">◆ React</span>
+                                <span class="font-mono text-[10px] text-paper-faint">dashboard</span>
+                            </div>
+                            <h5 class="font-display text-base font-semibold text-paper mb-1.5">Klear Admin</h5>
+                            <p class="text-xs text-paper-dim leading-relaxed mb-4 flex-1" data-i18n="klear_admin_desc">Admin dashboard — bookings, users, analytics, and realtime platform control.</p>
+                            <a href="https://github.com/amworx/klear-admin" target="_blank" class="font-mono text-xs text-cyan">github<span class="app-arrow"> ↗</span></a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Routa -->
+                <article data-cat="mobile" class="work-item lift p-6 md:col-span-2 lg:col-span-3 border rounded-lg bracket" style="background: var(--panel); border-color: var(--line)">
+                    <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                        <div class="flex items-center gap-4">
+                            <span class="font-mono text-[11px] text-cyan">◆ Kotlin</span>
+                            <span class="font-mono text-[11px] text-paper-faint hidden sm:inline">compose · diagnostics</span>
+                        </div>
+                        <span class="font-mono text-[11px] text-paper-faint" data-i18n="in_development">in development</span>
+                    </div>
+
+                    <div class="grid sm:grid-cols-3 gap-6 items-center">
+                        <div class="sm:col-span-2">
+                            <h4 class="font-display text-2xl font-semibold text-paper mb-2">Routa</h4>
+                            <p class="text-sm text-paper-dim leading-relaxed" data-i18n="routa_desc">Precision network-test console for Android — ping, DNS, speed test, traceroute, MTR, port scan, and Wi-Fi analysis in a "Field Instrument" dark UI. Diagnostics only — no root, no data collection. Clean Architecture + MVVM.</p>
+                        </div>
+                        <div class="sm:col-span-1 flex sm:justify-end">
+                            <a href="https://github.com/amworx/routa" target="_blank" class="lift bg-cyan text-ink-accent font-mono text-xs font-bold px-5 py-3 rounded glow whitespace-nowrap">github<span class="app-arrow"> ↗</span></a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= GITHUB ================= -->
+    <section id="github" class="relative py-24 lg:py-32 panel-soft border-y" style="border-color: var(--line)">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="mb-12 reveal">
+                <div class="annot mb-5" data-i18n="annot_open_source">05 — open source</div>
+                <h2 class="font-display text-3xl lg:text-5xl font-bold text-paper" data-i18n="repos_heading">Latest Repos</h2>
+            </div>
+            <div id="repos" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+            <div class="mt-10 reveal">
+                <a href="https://github.com/amworx" target="_blank" class="inline-flex items-center gap-2 font-mono text-sm text-cyan hover:underline">github.com/amworx ↗</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section id="contact" class="relative py-24 lg:py-32 blueprint">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-14">
+                <div class="reveal">
+                    <div class="annot mb-5" data-i18n="annot_contact">06 — contact</div>
+                    <h2 class="font-display text-3xl lg:text-5xl font-bold text-paper mb-6" data-i18n="contact_heading">Start a Project?</h2>
+                    <p class="text-paper-dim leading-relaxed mb-10" data-i18n="contact_para">Have an idea or a problem to solve? I'm open to new opportunities, collaborations, and interesting engineering challenges.</p>
+
+                    <div class="contact-rows" style="background: var(--panel); border-color: var(--line)">
+                        <a href="mailto:amworxx@gmail.com" class="contact-row" aria-label="Email amworxx@gmail.com" data-i18n-aria="contact_aria_email">
+                            <span class="contact-key font-mono text-rose" data-i18n="contact_mail">mail</span>
+                            <span class="contact-value font-mono text-paper">amworxx@gmail.com</span>
+                            <span class="contact-arrow font-mono text-paper-faint" data-i18n-arrow>→</span>
+                        </a>
+                        <a href="https://wa.me/963992656853" target="_blank" class="contact-row" aria-label="WhatsApp +963 992 656 853" data-i18n-aria="contact_aria_wa">
+                            <span class="contact-key font-mono text-cyan" data-i18n="contact_whatsapp">whatsapp</span>
+                            <span class="contact-value font-mono text-paper">+963 992 656 853</span>
+                            <span class="contact-arrow font-mono text-paper-faint" data-i18n-arrow>→</span>
+                        </a>
+                        <a href="https://github.com/amworx" target="_blank" class="contact-row" aria-label="GitHub amworx" data-i18n-aria="contact_aria_gh">
+                            <span class="contact-key font-mono text-amber" data-i18n="contact_github">github</span>
+                            <span class="contact-value font-mono text-paper">github.com/amworx</span>
+                            <span class="contact-arrow font-mono text-paper-faint" data-i18n-arrow>→</span>
+                        </a>
+                        <a href="https://amworx.github.io/client-intake/" target="_blank" class="contact-row" aria-label="Request a WordPress site" data-i18n-aria="contact_aria_wp">
+                            <span class="contact-key font-mono text-paper-dim" data-i18n="contact_wordpress">wordpress</span>
+                            <span class="contact-value font-mono text-cyan">request_wp_site()</span>
+                            <span class="contact-arrow font-mono text-paper-faint" data-i18n-arrow>→</span>
+                        </a>
+                    </div>
+                    <p class="mt-3 font-mono text-[11px] text-paper-faint" data-i18n="contact_hint">select a channel to reach me</p>
+                </div>
+
+                <form id="contactForm" class="reveal p-7 border rounded-lg" style="background: var(--panel); border-color: var(--line); transition-delay:.1s">
+                    <div class="font-mono text-sm text-cyan mb-5">// send_message()</div>
+                    <div class="space-y-5">
+                        <div>
+                            <label class="font-mono text-xs text-paper-dim block mb-1.5" data-i18n="form_name">name</label>
+                            <input id="name" required class="w-full border rounded px-4 py-3 font-mono text-sm text-paper focus:outline-none focus:border-cyan transition-colors" style="background: var(--bg); border-color: var(--line)" placeholder="your name" data-i18n-placeholder="form_name_ph">
+                        </div>
+                        <div>
+                            <label class="font-mono text-xs text-paper-dim block mb-1.5" data-i18n="form_email">email</label>
+                            <input id="email" required type="email" class="w-full border rounded px-4 py-3 font-mono text-sm text-paper focus:outline-none focus:border-cyan transition-colors" style="background: var(--bg); border-color: var(--line)" placeholder="you@email.com">
+                        </div>
+                        <div>
+                            <label class="font-mono text-xs text-paper-dim block mb-1.5" data-i18n="form_message">message</label>
+                            <textarea id="msg" required rows="4" class="w-full border rounded px-4 py-3 font-mono text-sm text-paper focus:outline-none focus:border-cyan transition-colors resize-none" style="background: var(--bg); border-color: var(--line)" placeholder="tell me about your project" data-i18n-placeholder="form_message_ph"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-cyan text-ink-accent font-mono text-sm font-bold py-3.5 rounded glow" data-i18n="form_send">send()</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="border-t py-10" style="border-color: var(--line)">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="font-mono text-xs text-paper-dim">© 2026 AMWORX — Abdulrahman Mustafa</div>
+            <div class="font-mono text-xs text-paper-faint" data-i18n="footer_built">built with precision in Syria 🇸🇾</div>
+            <div class="font-mono text-[10px] text-paper-faint">ui accents: uiverse.io (MIT)</div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== i18n / Arabic =====
+        const I18N = {
+            en: {
+                boot_scan: `scanning`,
+                boot_fingerprint: `verifying fingerprint`,
+                nav_about: `about()`,
+                nav_services: `services()`,
+                nav_work: `work()`,
+                nav_repos: `repos()`,
+                nav_contact: `contact()`,
+                hero_boot: `system boot — Abdulrahman.Mustafa`,
+                hero_whoami: `$ whoami`,
+                hero_role1: `IT Engineer`,
+                hero_role2: `Web Developer`,
+                hero_desc: `I engineer web platforms, desktop applications, and mobile experiences from the ground up. Based in <span class="text-paper font-medium">Syria</span> — delivering for clients worldwide.`,
+                hero_open_work: `open_work()`,
+                hero_start_project: `start_project()`,
+                annot_about: `01 — about`,
+                about_h1_a: `The Engineer`,
+                about_h1_b: `Behind the Work`,
+                about_p1: `An experienced <span class="text-cyan">IT Engineer</span> and <span class="text-cyan">remote IT supporter</span> who specializes in core operating systems, <span class="text-paper">C#</span> and <span class="text-paper">WordPress</span> development — with extensive <span class="text-paper">SQL</span> expertise.`,
+                about_p2: `Beyond classic IT, I build modern products: cross-platform <span class="text-paper">Flutter</span> apps, <span class="text-paper">React</span> dashboards, and <span class="text-paper">Supabase</span>-backed platforms.`,
+                about_p3: `Based in <span class="text-paper">Syria</span>, I work with clients worldwide — combining global best practices with genuine local understanding of complex environments.`,
+                annot_capabilities: `02 — capabilities`,
+                annot_services: `03 — services`,
+                services_heading: `What I Build`,
+                serv_web_title: `Web Development`,
+                serv_web_desc: `WordPress sites and React web apps — from corporate websites to complex platforms.`,
+                serv_wp_link: `request a wordpress site`,
+                serv_desktop_title: `Desktop Applications`,
+                serv_desktop_desc: `C# / WinForms business systems — POS, financial & management tools with SQL Server.`,
+                serv_mobile_title: `Mobile Applications`,
+                serv_mobile_desc: `Cross-platform Flutter apps with beautiful UI, GPS, and realtime Supabase backends.`,
+                serv_data_title: `Database & Backend`,
+                serv_data_desc: `SQL database design, optimization, and modern BaaS backends (Supabase, REST).`,
+                serv_it_title: `IT Solutions & Support`,
+                serv_it_desc: `System administration, remote support, Docker deployment, and network tooling.`,
+                serv_trades_title: `Trading Automation`,
+                serv_trades_desc: `Pine Script indicators and MQL5 expert advisors for market automation.`,
+                cta_wp_heading: `Going with WordPress?`,
+                cta_wp_desc: `Skip the endless back-and-forth. Fill in the 2-minute client intake form — you'll get a tailored proposal with package recommendation, timeline, and pricing.`,
+                annot_portfolio: `04 — portfolio`,
+                work_heading: `Selected Work`,
+                filter_all: `all`,
+                filter_web: `web`,
+                filter_desktop: `desktop`,
+                filter_mobile: `mobile`,
+                featured_heading: `-- featured builds`,
+                klear_feat_title: `Car Wash Platform`,
+                klear_feat_desc: `3 apps · one realtime backend — Flutter × React × Supabase. Client app, staff app, and admin dashboard synced in realtime.`,
+                routa_feat_title: `Network Diagnostics`,
+                routa_feat_desc: `Precision network-test console for Android — ping, DNS, speed, traceroute, MTR, port scan & Wi-Fi analysis. Clean Architecture + MVVM, "Field Instrument" UI. In development.`,
+                web_heading: `-- web projects`,
+                artit_desc: `Corporate website for an international consultancy covering capacity building, TPM, and research.`,
+                cpcd_desc: `International consultancy site — multi-branch presence across 10 countries with portfolio & network sections.`,
+                stoos_desc: `Bilingual M&E and training firm site with global reach across the MENA region and Africa.`,
+                desktop_heading: `-- desktop projects`,
+                simpleex_desc: `Financial remittance & currency exchange system — transfers, funds, agents, account transactions, reporting.`,
+                view_project: `view_project`,
+                alver_desc: `Complete point-of-sale system — inventory, sales, bills, and comprehensive business reporting.`,
+                mobile_heading: `-- mobile projects`,
+                klear_platform_tag: `3 apps — one platform`,
+                klear_platform_title: `Klear — Car Wash Platform`,
+                klear_platform_desc: `One realtime Supabase backend powering three apps: the customer booking app, the captain staff tool, and the admin control center.`,
+                klear_app_title: `Klear — Car Wash`,
+                klear_app_desc: `Customer app — book a wash at your location and time, live tracking, in-app payment.`,
+                klear_staff_title: `Klear Staff App`,
+                klear_staff_desc: `Captain app — job tracking, open-pool claiming, live GPS, client chat. Arabic-first.`,
+                klear_admin_desc: `Admin dashboard — bookings, users, analytics, and realtime platform control.`,
+                in_development: `in development`,
+                routa_desc: `Precision network-test console for Android — ping, DNS, speed test, traceroute, MTR, port scan, and Wi-Fi analysis in a "Field Instrument" dark UI. Diagnostics only — no root, no data collection. Clean Architecture + MVVM.`,
+                annot_open_source: `05 — open source`,
+                repos_heading: `Latest Repos`,
+                repos_error: `repos unavailable — see github.com/amworx`,
+                annot_contact: `06 — contact`,
+                contact_heading: `Start a Project?`,
+                contact_para: `Have an idea or a problem to solve? I'm open to new opportunities, collaborations, and interesting engineering challenges.`,
+                contact_aria_email: `Email amworxx@gmail.com`,
+                contact_mail: `mail`,
+                contact_aria_wa: `WhatsApp +963 992 656 853`,
+                contact_whatsapp: `whatsapp`,
+                contact_aria_gh: `GitHub amworx`,
+                contact_github: `github`,
+                contact_aria_wp: `Request a WordPress site`,
+                contact_wordpress: `wordpress`,
+                contact_hint: `select a channel to reach me`,
+                form_name: `name`,
+                form_name_ph: `your name`,
+                form_email: `email`,
+                form_message: `message`,
+                form_message_ph: `tell me about your project`,
+                form_send: `send()`,
+                footer_built: `built with precision in Syria 🇸🇾`,
+                theme_aria: `Toggle theme`,
+                lang_aria: `Switch to Arabic`
+            },
+            ar: {
+                boot_scan: `فحص`,
+                boot_fingerprint: `التحقق من البصمة`,
+                nav_about: `من_أنا()`,
+                nav_services: `خدماتي()`,
+                nav_work: `أعمالي()`,
+                nav_repos: `المستودعات()`,
+                nav_contact: `تواصل()`,
+                hero_boot: `إقلاع النظام — Abdulrahman.Mustafa`,
+                hero_whoami: `$ من_أنا`,
+                hero_role1: `مهندس تقنية معلومات`,
+                hero_role2: `مطوّر ويب`,
+                hero_desc: `أُصمّم وأبني منصّات الويب وتطبيقات سطح المكتب وتجارب الجوال من الصفر. مقيم في <span class="text-paper font-medium">سوريا</span> — وأقدّم خدماتي لعملاء حول العالم.`,
+                hero_open_work: `فتح_الأعمال()`,
+                hero_start_project: `بدء_مشروع()`,
+                annot_about: `01 — من أنا`,
+                about_h1_a: `المُهندس`,
+                about_h1_b: `خلف كل عمل`,
+                about_p1: `مُهندس <span class="text-cyan">تقنية معلومات</span> و<span class="text-cyan">دعم فني عن بُعد</span> متمرس، متخصص في أنظمة التشغيل الأساسية وتطوير <span class="text-paper">C#</span> و<span class="text-paper">WordPress</span> — مع خبرة واسعة في <span class="text-paper">SQL</span>.`,
+                about_p2: `وبخلاف تقنية المعلومات التقليدية، أبني منتجات حديثة: تطبيقات <span class="text-paper">Flutter</span> متعددة المنصّات، ولوحات تحكم <span class="text-paper">React</span>، ومنصّات تعمل بخلفية <span class="text-paper">Supabase</span>.`,
+                about_p3: `مقيم في <span class="text-paper">سوريا</span>، أعمل مع عملاء حول العالم — أجمع بين أفضل الممارسات العالمية والفهم المحلي الحقيقي للبيئات المعقّدة.`,
+                annot_capabilities: `02 — القدرات`,
+                annot_services: `03 — الخدمات`,
+                services_heading: `ماذا أبني`,
+                serv_web_title: `تطوير الويب`,
+                serv_web_desc: `مواقع WordPress وتطبيقات ويب بـ React — من المواقع المؤسسية إلى المنصّات المعقّدة.`,
+                serv_wp_link: `اطلب موقع ووردبريس`,
+                serv_desktop_title: `تطبيقات سطح المكتب`,
+                serv_desktop_desc: `أنظمة أعمال بلغة C# / WinForms — نقاط بيع وأدوات مالية وإدارية مع SQL Server.`,
+                serv_mobile_title: `تطبيقات الجوال`,
+                serv_mobile_desc: `تطبيقات Flutter متعددة المنصّات بواجهات جميلة، مع GPS وخلفيات Supabase فورية.`,
+                serv_data_title: `قواعد البيانات والواجهة الخلفية`,
+                serv_data_desc: `تصميم قواعد بيانات SQL وتحسين أدائها، وواجهات خلفية BaaS حديثة (Supabase, REST).`,
+                serv_it_title: `حلول تقنية المعلومات والدعم`,
+                serv_it_desc: `إدارة الأنظمة، الدعم عن بُعد، نشر تطبيقات Docker، وأدوات الشبكات.`,
+                serv_trades_title: `أتمتة التداول`,
+                serv_trades_desc: `مؤشرات Pine Script وخبراء MQL5 لأتمتة الأسواق.`,
+                cta_wp_heading: `تفكّر في استخدام WordPress؟`,
+                cta_wp_desc: `تخلَّص من الرسائل ذهابًا وإيابًا. املأ نموذج استقبال العملاء (دقيقتان فقط) — وستصلك خطة مخصّصة مع توصية بالباقة والجدول الزمني والتكلفة.`,
+                annot_portfolio: `04 — الأعمال`,
+                work_heading: `أعمال مختارة`,
+                filter_all: `الكل`,
+                filter_web: `ويب`,
+                filter_desktop: `سطح المكتب`,
+                filter_mobile: `محمول`,
+                featured_heading: `-- أعمال مميزة`,
+                klear_feat_title: `منصة غسيل السيارات`,
+                klear_feat_desc: `3 تطبيقات · خلفية واحدة فورية — Flutter × React × Supabase. تطبيق العميل وتطبيق الطاقم ولوحة الإدارة، متزامنة في الوقت الفعلي.`,
+                routa_feat_title: `تشخيص الشبكات`,
+                routa_feat_desc: `وحدة اختبار شبكات دقيقة لنظام Android — ping وDNS والسرعة وtraceroute وMTR وفحص المنافذ وتحليل Wi-Fi. بمعمارية نظيفة + MVVM وواجهة "أداة ميدانية". قيد التطوير.`,
+                web_heading: `-- مشاريع الويب`,
+                artit_desc: `موقع مؤسسي لشركة استشارات دولية يغطي بناء القدرات وإدارة المشاريع التقنية (TPM) والأبحاث.`,
+                cpcd_desc: `موقع شركة استشارات دولية — حضور متعدد الفروع في 10 دول، مع أقسام للأعمال والشبكة.`,
+                stoos_desc: `موقع شركة تدريب ورصد وتقييم (M&E) ثنائي اللغة، بانتشار واسع في منطقة الشرق الأوسط وشمال أفريقيا وأفريقيا.`,
+                desktop_heading: `-- مشاريع سطح المكتب`,
+                simpleex_desc: `نظام تحويلات مالية وصرف عملات — حوالات وأرصدة ووكلاء وحركات حسابات وتقارير.`,
+                view_project: `عرض_المشروع`,
+                alver_desc: `نظام نقاط بيع متكامل — مخزون ومبيعات وفواتير وتقارير أعمال شاملة.`,
+                mobile_heading: `-- مشاريع الجوال`,
+                klear_platform_tag: `3 تطبيقات — منصة واحدة`,
+                klear_platform_title: `Klear — منصة غسيل السيارات`,
+                klear_platform_desc: `خلفية Supabase فورية واحدة تشغّل ثلاثة تطبيقات: تطبيق حجوزات العملاء، وأداة الكابتن للطاقم، ومركز تحكّم المشرف.`,
+                klear_app_title: `Klear — غسيل السيارات`,
+                klear_app_desc: `تطبيق العملاء — احجز غسيلًا في موقعك ووقتك، مع تتبّع مباشر ودفع داخل التطبيق.`,
+                klear_staff_title: `تطبيق Klear للطاقم`,
+                klear_staff_desc: `تطبيق الكابتن — تتبّع المهام، واستلام الحجوزات من المجمع المفتوح، وجي بي إس مباشر، ودردشة العملاء. عربي أولًا.`,
+                klear_admin_desc: `لوحة تحكّم المشرف — الحجوزات والمستخدمون والتحليلات والتحكم الفوري بالمنصة.`,
+                in_development: `قيد التطوير`,
+                routa_desc: `وحدة اختبار شبكات دقيقة لنظام Android — ping وDNS واختبار السرعة وtraceroute وMTR وفحص المنافذ وتحليل Wi-Fi بواجهة داكنة بأسلوب "أداة ميدانية". تشخيص فقط — دون صلاحيات جذر أو جمع بيانات. بمعمارية نظيفة + MVVM.`,
+                annot_open_source: `05 — المصدر المفتوح`,
+                repos_heading: `أحدث المستودعات`,
+                repos_error: `المستودعات غير متاحة — راجع github.com/amworx`,
+                annot_contact: `06 — التواصل`,
+                contact_heading: `ابدأ مشروعك؟`,
+                contact_para: `لديك فكرة أو مشكلة تبحث عن حل؟ أنا منفتح على فرص جديدة وتعاونات وتحديات هندسية مثيرة للاهتمام.`,
+                contact_aria_email: `راسل amworxx@gmail.com`,
+                contact_mail: `بريد`,
+                contact_aria_wa: `واتساب +963 992 656 853`,
+                contact_whatsapp: `واتساب`,
+                contact_aria_gh: `حساب GitHub amworx`,
+                contact_github: `github`,
+                contact_aria_wp: `اطلب موقع WordPress`,
+                contact_wordpress: `WordPress`,
+                contact_hint: `اختر طريقة للتواصل معي`,
+                form_name: `الاسم`,
+                form_name_ph: `اسمك`,
+                form_email: `البريد الإلكتروني`,
+                form_message: `الرسالة`,
+                form_message_ph: `أخبرني عن مشروعك`,
+                form_send: `إرسال()`,
+                footer_built: `بُني بدقة في سوريا 🇸🇾`,
+                theme_aria: `تبديل المظهر`,
+                lang_aria: `التبديل إلى الإنجليزية`
+            }
+        };
+
+        let currentLang = 'en';
+
+        function setLang(lang) {
+            lang = lang === 'ar' ? 'ar' : 'en';
+            currentLang = lang;
+            const html = document.documentElement;
+            html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            html.setAttribute('lang', lang);
+            const D = I18N[lang];
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const v = D[el.dataset.i18n];
+                if (v !== undefined) el.textContent = v;
+            });
+            document.querySelectorAll('[data-i18n-html]').forEach(el => {
+                const v = D[el.dataset.i18nHtml];
+                if (v !== undefined) el.innerHTML = v;
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const v = D[el.dataset.i18nPlaceholder];
+                if (v !== undefined) el.setAttribute('placeholder', v);
+            });
+            document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+                const v = D[el.dataset.i18nAria];
+                if (v !== undefined) el.setAttribute('aria-label', v);
+            });
+            document.querySelectorAll('[data-i18n-arrow]').forEach(el => {
+                if (!el.dataset.origArrow) el.dataset.origArrow = el.textContent;
+                el.textContent = el.dataset.origArrow.replace(/[→←]/g, lang === 'ar' ? '←' : '→');
+            });
+
+            try { localStorage.setItem('amworx-lang', lang); } catch(e) {}
+
+            const label = D.lang_aria;
+            [document.getElementById('langToggle'), document.getElementById('langToggleMobile')].forEach(b => {
+                if (!b) return;
+                b.textContent = lang === 'en' ? 'EN' : 'ع';
+                b.setAttribute('aria-label', label);
+            });
+        }
+
+        function toggleLang() {
+            setLang(currentLang === 'ar' ? 'en' : 'ar');
+        }
+        document.getElementById('langToggle').addEventListener('click', toggleLang);
+        document.getElementById('langToggleMobile').addEventListener('click', toggleLang);
+
+        (function () {
+            // Switcher hidden for review — always render English; dictionary stays intact.
+            setLang('en');
+        })();
+
+        // ===== Theme toggle =====
+        function setTheme(t) {
+            document.documentElement.setAttribute('data-theme', t);
+            try { localStorage.setItem('amworx-theme', t); } catch(e) {}
+            var meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.setAttribute('content', t === 'light' ? '#F8FAFC' : '#0A0F1E');
+            var dark = t === 'dark';
+            document.getElementById('sunIcon').classList.toggle('hidden', !dark);
+            document.getElementById('moonIcon').classList.toggle('hidden', dark);
+            document.getElementById('sunIconM').classList.toggle('hidden', !dark);
+            document.getElementById('moonIconM').classList.toggle('hidden', dark);
+        }
+        function toggleTheme() {
+            setTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+        }
+        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+        document.getElementById('themeToggleMobile').addEventListener('click', toggleTheme);
+        // sync icons on load
+        (function(){ setTheme(document.documentElement.getAttribute('data-theme') || 'dark'); })();
+
+        // ===== Mobile menu =====
+        const mBtn = document.getElementById('menuBtn');
+        const mMenu = document.getElementById('mobileMenu');
+        mBtn.addEventListener('click', () => mMenu.classList.toggle('hidden'));
+        mMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mMenu.classList.add('hidden')));
+
+        // ===== Reveal =====
+        const ro = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+            { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+        // ===== Nav scroll =====
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            nav.style.borderColor = window.scrollY > 40 ? 'color-mix(in srgb, var(--cyan) 35%, transparent)' : '';
+        });
+
+        // ===== Work filter =====
+        const filterBtns = document.querySelectorAll('#filters button');
+        const items = document.querySelectorAll('.work-item');
+        filterBtns.forEach(btn => btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const f = btn.dataset.f;
+            items.forEach(it => it.classList.toggle('hide', f !== 'all' && it.dataset.cat !== f));
+        }));
+
+        // ===== GitHub repos =====
+        async function loadRepos() {
+            const box = document.getElementById('repos');
+            try {
+                const r = await fetch('https://api.github.com/users/amworx/repos?sort=updated&per_page=6');
+                const repos = await r.json();
+                if (!Array.isArray(repos)) throw 0;
+                box.innerHTML = repos.map(repo => `
+                    <a href="${repo.html_url}" target="_blank" class="lift p-5 border rounded-lg block" style="background: var(--panel); border-color: var(--line)">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-mono text-sm text-cyan">${repo.name}</span>
+                            ${repo.stargazers_count>0?`<span class="font-mono text-[11px] text-amber">★ ${repo.stargazers_count}</span>`:''}
+                        </div>
+                        <p class="text-xs text-paper-dim leading-relaxed mb-3">${repo.description||'No description.'}</p>
+                        <div class="flex items-center gap-3 font-mono text-[10px] text-paper-faint">
+                            ${repo.language?`<span>${repo.language}</span>`:''}
+                            <span>${fmt(repo.updated_at)}</span>
+                        </div>
+                    </a>`).join('');
+            } catch(e) {
+                box.innerHTML = '<div class="font-mono text-xs text-paper-faint">' + I18N[currentLang].repos_error + '</div>';
+            }
+        }
+        function fmt(d) { const x=(Date.now()-new Date(d))/864e5; return x<7?`${Math.round(x)}d`:x<30?`${Math.round(x/7)}w`:x<365?`${Math.round(x/30)}m`:`${Math.round(x/365)}y`; }
+        loadRepos();
+
+        // ===== Contact form =====
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name=this.querySelector('#name').value, email=this.querySelector('#email').value, msg=this.querySelector('#msg').value;
+            window.open(`mailto:amworxx@gmail.com?subject=${encodeURIComponent('Portfolio contact from '+name)}&body=${encodeURIComponent(name+'\n'+email+'\n\n'+msg)}`,'_blank');
+        });
+    </script>
+</body>
+</html>
