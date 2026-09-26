@@ -55,8 +55,9 @@ rules     : no emojis (text/SVG only) · focus-visible 3px · prefers-reduced-mo
   .clip { display:block; overflow:hidden; }
   .clip-inner { display:inline-block; will-change:transform; }
 
-  /* sticky section index */
-  #index { position:fixed; left:32px; top:50%; transform:translateY(-50%); z-index:40; display:flex; flex-direction:column; gap:18px; mix-blend-mode:multiply; }
+  /* sticky section index — desktop only (id specificity would defeat Tailwind 'hidden'; base none, lg only) */
+  #index { position:fixed; left:32px; top:50%; transform:translateY(-50%); z-index:40; display:none; flex-direction:column; gap:18px; mix-blend-mode:multiply; }
+  @media (min-width:1024px) { #index { display:flex; } }
   #index a { writing-mode:vertical-rl; font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--gray); transition:color .2s ease; font-weight:500; }
   #index a:hover { color:var(--ink); }
   #index a.on { color:var(--blue); font-weight:600; }
@@ -87,7 +88,8 @@ rules     : no emojis (text/SVG only) · focus-visible 3px · prefers-reduced-mo
   #hero h1 .clip-inner { max-width:100%; }
 
   /* scroll cue */
-  .cue { display:inline-flex; align-items:center; gap:.6rem; font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:var(--gray); }
+  .cue { display:none; align-items:center; gap:.6rem; font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:var(--gray); }
+  @media (min-width:768px) { .cue { display:inline-flex; } }
   .cue::after { content:""; width:1px; height:34px; background:var(--gray); animation:cue 1.6s ease-in-out infinite; transform-origin:top; }
   @keyframes cue { 0%,100%{ transform:scaleY(.35); opacity:.4; } 50%{ transform:scaleY(1); opacity:1; } }
 
@@ -102,7 +104,7 @@ rules     : no emojis (text/SVG only) · focus-visible 3px · prefers-reduced-mo
 <div id="progress" aria-hidden="true"></div>
 
 <!-- sticky section index (desktop) -->
-<nav id="index" aria-label="sections" class="hidden lg:flex">
+<nav id="index" aria-label="sections">
   <a href="#hero" data-sec="hero" class="on">Index 00 — intro</a>
   <a href="#work" data-sec="work">01 — projects</a>
   <a href="#capabilities" data-sec="capabilities">02 — services</a>
@@ -151,7 +153,7 @@ rules     : no emojis (text/SVG only) · focus-visible 3px · prefers-reduced-mo
       <div class="flex flex-wrap gap-x-10 gap-y-3 kicker">
         <span>03 live sites</span><span>07 projects shipped</span><span>10 countries</span><span>03 apps, one platform</span>
       </div>
-      <span class="cue hidden md:inline-flex" aria-hidden="true">Scroll</span>
+      <span class="cue" aria-hidden="true">Scroll</span>
     </div>
   </section>
 
