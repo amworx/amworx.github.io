@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.amworx.lazim",
+    "sha256_cert_fingerprints": [
+      "C2:56:DD:69:1C:80:10:41:DF:17:DF:FA:DD:47:A9:7A:C3:81:FF:EF:88:90:7A:A2:1C:15:7D:F7:CE:2D:88:2D"
+    ]
+  }
+}]
