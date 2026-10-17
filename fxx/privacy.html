@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy policy — fxx</title>
+<meta name="description" content="How fxx handles your information: Google sign-in basics, data stored only on your device, the public feeds it requests, and how to have your data deleted.">
+<meta name="author" content="Abdulrahman Mustafa (AMWORX)">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://amworx.github.io/fxx/privacy.html">
+<meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#09090B" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&f[]=cabinet-grotesk@300,400,700,800,900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="fxx.css">
+
+<!--
+<design_plan>
+  page  : fxx privacy policy — the exact URL registered as the OAuth consent
+          screen's "Application privacy policy" link:
+          https://amworx.github.io/fxx/privacy.html
+  must  : disclose how Google user data is accessed, used, stored and shared,
+          and stay within what is disclosed here (Google API Services User Data
+          Policy, including the Limited Use requirements)
+  rules : readable as plain prose · table of contents · anchor links ·
+          light + dark · print-friendly · no emojis
+</design_plan>
+-->
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="rule-b noprint">
+  <div class="wrap flex items-center justify-between gap-4 py-3">
+    <a href="./" class="display text-lg tap" aria-label="fxx — home">fxx</a>
+    <nav aria-label="Site" class="flex items-center gap-5 text-sm">
+      <a class="tap" href="index.html">Overview</a>
+      <a class="tap" aria-current="page" href="privacy.html">Privacy policy</a>
+      <a class="tap" href="mailto:amworxx@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap py-12 lg:py-16">
+
+  <p class="kicker">Privacy policy</p>
+  <h1 class="display text-4xl lg:text-6xl mt-4 mb-4">How fxx handles your information</h1>
+  <p class="muted">Applies to the Android application <strong>fxx</strong> (<code>com.fxx.app</code>) and to these pages.</p>
+  <p class="muted"><strong>Last updated:</strong> 17 October 2026 · <strong>Effective:</strong> 17 October 2026</p>
+
+  <nav class="panel p-5 my-10 max-w-2xl noprint" aria-label="On this page">
+    <p class="kicker mb-3">On this page</p>
+    <ol class="m-0 pl-5">
+      <li><a href="#summary">Summary</a></li>
+      <li><a href="#collect">What we collect</a></li>
+      <li><a href="#google">Google sign-in and Google user data</a></li>
+      <li><a href="#device">Data stored on your device</a></li>
+      <li><a href="#network">Network requests the app makes</a></li>
+      <li><a href="#not">What we do not do</a></li>
+      <li><a href="#retention">Retention and deletion</a></li>
+      <li><a href="#children">Children</a></li>
+      <li><a href="#changes">Changes to this policy</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </nav>
+
+  <section id="summary" class="max-w-3xl">
+    <h2 class="display text-2xl lg:text-3xl mt-10 mb-3">1. Summary</h2>
+    <p>
+      fxx is a manual trading companion. It keeps your notes, calculations and settings
+      <strong>on your own device</strong>. There is no fxx account server: version 1 has no backend,
+      no user database and no sync. If you choose to sign in with Google, the app receives your
+      basic profile (name, email address, profile picture) from Google and stores it locally so it can
+      greet you and, in a future version, sync your data at your request.
+    </p>
+    <p>
+      We do not run analytics, advertising or tracking of any kind in the app, and we do not sell or
+      share your information.
+    </p>
+  </section>
+
+  <section id="collect" class="max-w-3xl">
+    <h2 class="display text-2xl lg:text-3xl mt-10 mb-3">2. What we collect</h2>
+    <ul class="marked">
+      <li><strong>If you sign in with Google:</strong> your name, your email address and your profile
+        picture. These come from Google's basic identity scopes (<code>openid</code>,
+        <code>email</code>, <code>profile</code>). fxx requests nothing else from your Google Account
+        — no contacts, no Drive, no calendar, no Gmail.</li>
+      <li><strong>Whatever you enter in the app:</strong> journal entries, calculator inputs, checklist
+        state, price alerts and settings. This is written to local storage on your device.</li>
+      <li><strong>Nothing else.</strong> The app does not read your contacts, messages, files, photos
+        or location.</li>
+    </ul>
+    <p class="mt-4">
+      Because fxx v1 has no server, the developer cannot see your journal, your balance, your alerts
+      or your trades. There is nowhere for them to be sent.
+    </p>
+  </section>
+
+  <section id="google" class="max-w-3xl">
+    <h2 class="display text-2xl lg:text-3xl mt-10 mb-3">3. Google sign-in and Google user data</h2>
+    <p>
+      Signing in is optional. If you tap “Continue with Google”, the authentication itself is performed
+      by Google on your device; fxx never sees your Google password. Google's handling of that
+      interaction is governed by <a href="https://policies.google.com/privacy" rel="noopener" target="_blank">Google's Privacy Policy</a>.
+    </p>
+    <p>We use the basic profile information we receive for exactly two purposes:</p>
+    <ul class="marked">
+      <li>to show which account you are signed in as inside the app; and</li>
+      <li>to identify your data for a future, opt-in cross-device sync feature.</li>
+    </ul>
+    <p>
+      We do not use Google user data for advertising, for building profiles, for creditworthiness or
+      lending decisions, or for training machine-learning models. We do not transfer it to third
+      parties, and no human reads it — there is no server that holds it.
+    </p>
+    <p class="panel p-4 mt-4 text-sm">
+      fxx's use and transfer of information received from Google APIs will adhere to the
+      <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener" target="_blank">Google API Services User Data Policy</a>,
+      including the Limited Use requirements.
+    </p>
+    <p class="mt-4">
+      You can revoke fxx's access at any time at
+      <a href="https://myaccount.google.com/permissions" rel="noopener" target="_blank">myaccount.google.com/permissions</a>,
+      or by signing out inside the app, which deletes the locally stored profile information.
+    </p>
+  </section>
+
+  <section id="device" class="max-w-3xl">
+    <h2 class="display text-2xl lg:text-3xl mt-10 mb-3">4. Data stored on your device</h2>
+    <p>
+      Journal entries, calculator inputs, alerts, preferences (including your chosen display time
+      zone and account balance you typed) and — if you signed in — your Google name, email address and
+      profile picture are stored in the app's private storage on your device. Other applications on
+      your phone cannot read it, and it is not backed up to us.
+    </p>
+    <p>
+      Device-level backup settings are controlled by Android and by your device manufacturer, not by
+      fxx; if you have enabled system backup for apps, your device may include fxx's local data in it.
+    </p>
+  </section>
+
+  <section id="network" class="max-w-3xl">
+    <h2 class="display text-2xl lg:text-3xl mt-10 mb-3">5. Network requests the app makes</h2>
+    <p>
+      fxx is offline-capable, but a few features fetch public data. A request of this kind
+      necessarily reveals your IP address and a generic user-agent string to the host, in the same way
+      as any web page. No account information, journal content or other personal data is included in
+      these requests.
+    </p>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm mt-4" style="border-collapse:collapse">
+        <caption class="kicker text-left mb-2">Outbound requests</caption>
+        <thead>
+          <tr class="rule-b">
+            <th scope="col" class="text-left py-2 pr-4">Host</th>
+            <th scope="col" class="text-left py-2 pr-4">Purpose</th>
+            <th scope="col" class="text-left py-2">Sent</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="rule-b">
+            <td class="py-3 pr-4">biquote.io</td>
+            <td class="py-3 pr-4">Live XAUUSD price (primary feed)</td>
+            <td class="py-3">IP address, generic user-agent</td>
+          </tr>
+          <tr class="rule-b">
+            <td class="py-3 pr-4">api.gold-api.com</td>
+            <td class="py-3 pr-4">Live XAU price (fallback feed)</td>
+            <td class="py-3">IP address, generic user-agent</td>
+          </tr>
+          <tr class="rule-b">
+            <td class="py-3 pr-4">financecalendar.com</td>
+            <td class="py-3 pr-4">Economic calendar (primary)</td>
+            <td class="py-3">IP address, generic user-agent</td>
+          </tr>
+          <tr class="rule-b">
+            <td class="py-3 pr-4">nfs.faireconomy.media</td>
+            <td class="py-3 pr-4">Economic calendar (fallback weekly feed)</td>
+            <td class="py-3">IP address, generic user-agent</td>
+          </tr>
+          <tr class="rule-b">
+            <td class="py-3 pr-4">Google (accounts.google.com)</td>
+            <td class="py-3 pr-4">Sign-in, only if you choose to sign in</td>
+            <td class="py-3">Handled by Google</td>
+          </tr>
+          <tr>
+            <td class="py-3 pr-4">A manifest URL, if configured</td>
+            <td class="py-3 pr-4">Optional in-app update check</td>
+            <td class="py-3">IP address, generic user-agent</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-4">
+      Tapping a provider's link (for example the calendar attribution in Settings) opens your
+      browser, where that site's own privacy policy applies.
+    </p>
+  </section>
+
+  <section id="not" class="max-w-3xl">
+    <h2 class="display text-2xl lg:text-3xl mt-10 mb-3">6. What we do not do</h2>
+    <ul class="marked">
+      <li>No analytics SDKs, no crash-reporting SDKs, no advertising SDKs, no tracking pixels.</li>
+      <li>No user accounts on a server, no sync, no cloud copy of your journal in version 1.</li>
+      <li>No selling, renting, licensing or sharing of your information with third parties.</li>
+      <li>No profiling and no automated decision-making about you.</li>
+      <li>No collection of location, contacts, photos, files, messages or call data.</li>
+    </ul>
+  </section>
+
+  <section id="retention" class="max-w-3xl">
+    <h2 class="display text-2xl lg:text-3xl mt-10 mb-3">7. Retention and deletion</h2>
+    <p>
+      Your data lives on your device for as long as you keep it there. You are in control of it:
+    </p>
+    <ul class="marked">
+      <li><strong>Sign out</strong> in Settings to remove the stored Google profile information.</li>
+      <li><strong>Clear storage</strong> (Android Settings → Apps → fxx → Storage → Clear storage) to delete everything the app holds.</li>
+      <li><strong>Uninstall</strong> the app to remove all of it at once.</li>
+    </ul>
+    <p>
+      Because no server-side copy exists, there is nothing for us to delete on our side. If you have a
+      question about deletion, write to us at the address in section 10 and we will confirm what the
+      app stores and where.
+    </p>
+  </section>
+
+  <section id="children" class="max-w-3xl">
+    <h2 class="display text-2xl lg:text-3xl mt-10 mb-3">8. Children</h2>
+    <p>
+      fxx is a trading tool intended for adults and is not directed at children. We do not knowingly
+      collect information from anyone under 16. If you believe a child has used the app, contact us and
+      we will help you remove the local data as described above.
+    </p>
+  </section>
+
+  <section id="changes" class="max-w-3xl">
+    <h2 class="display text-2xl lg:text-3xl mt-10 mb-3">9. Changes to this policy</h2>
+    <p>
+      If this policy changes, the new version will be published at this URL with a new
+      “Last updated” date, and the in-app privacy text will be updated to match. Material changes —
+      for example the introduction of the planned sync feature — will be described in the app's
+      release notes before they take effect.
+    </p>
+  </section>
+
+  <section id="contact" class="max-w-3xl">
+    <h2 class="display text-2xl lg:text-3xl mt-10 mb-3">10. Contact</h2>
+    <p>
+      Questions about this policy or about your data:
+    </p>
+    <p class="mt-5"><a class="btn" href="mailto:amworxx@gmail.com">amworxx@gmail.com</a></p>
+    <p class="muted mt-5 text-sm">
+      Abdulrahman Mustafa (AMWORX) — developer of fxx.
+      This address is also the support contact shown on the Google sign-in screen.
+    </p>
+  </section>
+
+</main>
+
+<footer class="rule-t">
+  <div class="wrap py-10 text-sm muted">
+    <p class="m-0"><a href="index.html">fxx overview</a> · <a href="privacy.html">Privacy policy</a> · <a href="mailto:amworxx@gmail.com">amworxx@gmail.com</a></p>
+    <p class="mt-3">© <span id="y">2026</span> AMWORX. Google and Google Play are trademarks of Google LLC. fxx is not affiliated with Google.</p>
+  </div>
+</footer>
+
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>

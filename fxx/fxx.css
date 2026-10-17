@@ -1,0 +1,137 @@
+/* fxx — shared styles for the app's public pages (amworx.github.io/fxx/)
+   Kept in one file so the home page and the privacy policy cannot drift apart.
+   Design language mirrors the portfolio: print-editorial paper/ink, hairline
+   rules, Satoshi body + Cabinet Grotesk display. No emojis — text/SVG only. */
+
+:root {
+  --paper: #FAFAFA;
+  --ink: #09090B;
+  --blue: #2563EB;
+  --rule: #DCDCDC;
+  --gray: #6B6B6B;
+  --tint: rgba(9, 9, 11, .035);
+  --font-body: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Cabinet Grotesk', ui-sans-serif, system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #09090B;
+    --ink: #FAFAFA;
+    --blue: #7DA2FF;
+    --rule: #2C2C31;
+    --gray: #A1A1AA;
+    --tint: rgba(250, 250, 250, .05);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+body { font-size: 16px; line-height: 1.65; }
+
+a { color: var(--blue); text-underline-offset: 3px; }
+
+a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+}
+
+/* 44px minimum interactive height, per the site's own rule */
+.tap { display: inline-flex; align-items: center; min-height: 44px; }
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.02;
+}
+
+.kicker {
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--gray);
+}
+
+.rule-t { border-top: 1px solid var(--rule); }
+.rule-b { border-bottom: 1px solid var(--rule); }
+
+.muted { color: var(--gray); }
+.lead { font-size: clamp(1.05rem, 2.4vw, 1.3rem); line-height: 1.55; }
+
+.panel {
+  border: 1px solid var(--rule);
+  background: var(--tint);
+}
+
+.arabic {
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 1.25rem;
+  border: 1px solid var(--ink);
+  color: var(--paper);
+  background: var(--ink);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+
+.btn:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--rule);
+}
+
+.btn-ghost:hover { background: var(--tint); color: var(--ink); border-color: var(--ink); }
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--ink);
+  color: var(--paper);
+  padding: .75rem 1rem;
+  z-index: 100;
+}
+
+.skip:focus { left: 0; }
+
+ul.plain { list-style: none; padding: 0; margin: 0; }
+ul.plain > li { padding: .9rem 0; border-bottom: 1px solid var(--rule); }
+ul.marked { list-style: none; padding: 0; margin: 0; }
+ul.marked > li { position: relative; padding-left: 1.4rem; margin-bottom: .6rem; }
+ul.marked > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .62em;
+  width: 7px;
+  height: 1px;
+  background: var(--gray);
+}
+
+.wrap { width: 100%; max-width: 76rem; margin: 0 auto; padding: 0 1.25rem; }
+
+@media print {
+  .noprint { display: none; }
+  body { background: #fff; color: #000; }
+}

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fxx — a manual companion for gold (XAUUSD) day traders</title>
+<meta name="description" content="fxx is an Arabic-first Android companion for gold (XAUUSD) day traders: live board and session clock, pre-trade checklist, risk calculator in R-multiples, economic blackout guard, trade journal and local price alerts. No signals, no auto-trading.">
+<meta name="author" content="Abdulrahman Mustafa (AMWORX)">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://amworx.github.io/fxx/">
+<meta property="og:title" content="fxx — a manual companion for gold (XAUUSD) day traders">
+<meta property="og:description" content="Live board and session clock, pre-trade checklist, risk calculator in R, economic blackout guard, journal and local price alerts. No signals.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://amworx.github.io/fxx/">
+<meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#09090B" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&f[]=cabinet-grotesk@300,400,700,800,900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="fxx.css">
+
+<!--
+<design_plan>
+  page      : fxx public home page — required by Google's OAuth Branding page
+              ("Application home page"). Must publicly describe what the app
+              does and link to the privacy policy at the exact URL registered
+              on the consent screen: https://amworx.github.io/fxx/privacy.html
+  theme     : same print-editorial system as the portfolio it is hosted in —
+              paper #FAFAFA / ink #09090B / blue #2563EB / rule #DCDCDC
+  structure : brand bar > intro > what it does > what it does NOT do >
+              data handling > availability > contact/colophon
+  rules     : no emojis (text/SVG only) · 44px targets · focus-visible 3px ·
+              mobile 360px with no horizontal overflow · semantic landmarks ·
+              light + dark via prefers-color-scheme · honest copy, no claims
+              about pricing, accuracy, or returns
+</design_plan>
+-->
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="rule-b noprint">
+  <div class="wrap flex items-center justify-between gap-4 py-3">
+    <a href="./" class="display text-lg tap" aria-label="fxx — home">fxx</a>
+    <nav aria-label="Site" class="flex items-center gap-5 text-sm">
+      <a class="tap" href="#about">Overview</a>
+      <a class="tap" href="privacy.html">Privacy policy</a>
+      <a class="tap" href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Intro -->
+  <section class="wrap pt-14 pb-10 lg:pt-20 lg:pb-14" aria-labelledby="h-title">
+    <p class="kicker">Android · Arabic-first (RTL) · v1.0.0</p>
+    <h1 id="h-title" class="display text-[clamp(2.6rem,12vw,7rem)] mt-5 mb-6">fxx</h1>
+    <p class="lead max-w-3xl">
+      A manual companion for <strong>gold (XAUUSD) day traders</strong>. fxx helps you prepare a
+      session, size your risk, respect the economic calendar, and review your own
+      decisions afterwards. It is a notebook and a calculator — not a signal service.
+    </p>
+    <p class="arabic muted max-w-3xl mt-5" lang="ar" dir="rtl">
+      حسابك لتداول محكم وخالٍ من العواطف — رفيق يدوي لمتداولي الذهب (XAUUSD).
+    </p>
+    <p class="mt-8 flex flex-wrap gap-3 noprint">
+      <a class="btn" href="#about">What it does</a>
+      <a class="btn btn-ghost" href="privacy.html">How your data is handled</a>
+    </p>
+  </section>
+
+  <!-- What it does -->
+  <section id="about" class="rule-t" aria-labelledby="h-about">
+    <div class="wrap py-12 lg:py-16">
+      <p class="kicker">What it does</p>
+      <h2 id="h-about" class="display text-3xl lg:text-5xl mt-3 mb-8">Built for the working day</h2>
+      <ul class="plain max-w-4xl">
+        <li>
+          <strong class="display text-lg">Live board and session clock</strong>
+          <p class="muted mt-1">The current XAUUSD mid price with the day's change, day range
+          position and spread, alongside which session is open — Asia, London, New York — in
+          the display time zone you choose.</p>
+        </li>
+        <li>
+          <strong class="display text-lg">Pre-trade checklist</strong>
+          <p class="muted mt-1">A short, fixed list you run through before every entry, so the
+          decision is made before the position is, not after.</p>
+        </li>
+        <li>
+          <strong class="display text-lg">Risk calculator in R-multiples</strong>
+          <p class="muted mt-1">Position size from your account balance and stop distance, with
+          stop and target levels in dollars and pips, and the resulting R multiple for the
+          trade you are about to take.</p>
+        </li>
+        <li>
+          <strong class="display text-lg">Economic blackout guard</strong>
+          <p class="muted mt-1">High-impact USD events for the week, so you can see the windows
+          where trading is a coin toss and stay out of them on purpose.</p>
+        </li>
+        <li>
+          <strong class="display text-lg">Trade journal and R-based statistics</strong>
+          <p class="muted mt-1">Log your own trades and review expectancy in R. fxx reports
+          expectancy rather than win rate, because win rate alone says nothing about survival.</p>
+        </li>
+        <li>
+          <strong class="display text-lg">Local price alerts</strong>
+          <p class="muted mt-1">Price levels that notify you when they are reached, running on
+          the device. No server is involved.</p>
+        </li>
+        <li>
+          <strong class="display text-lg">Display time zone</strong>
+          <p class="muted mt-1">Every clock and timestamp in the app is printed in a zone you
+          pick — your device, New York, UTC, or a fixed offset — while the underlying
+          calculations stay in UTC.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- What it does not do -->
+  <section class="rule-t" aria-labelledby="h-not">
+    <div class="wrap py-12 lg:py-16">
+      <p class="kicker">What it does not do</p>
+      <h2 id="h-not" class="display text-3xl lg:text-5xl mt-3 mb-6">No calls, ever</h2>
+      <div class="max-w-3xl">
+        <ul class="marked">
+          <li>No trading signals, no buy or sell recommendations, no “now” moments.</li>
+          <li>No voting, consensus, sentiment or crowd scores.</li>
+          <li>No auto-trading and no broker connection — fxx never places, modifies or closes an order.</li>
+          <li>No promise, projection or implication of profit. Price data is shown as received from public feeds.</li>
+          <li>No financial, investment or tax advice. You remain the only decision-maker.</li>
+        </ul>
+        <p class="muted mt-4 text-sm">
+          Trading gold with leverage carries a high risk of losing money. fxx is a record-keeping
+          and arithmetic tool; it cannot make a strategy profitable, and it will not tell you what to do.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Data -->
+  <section class="rule-t" aria-labelledby="h-data">
+    <div class="wrap py-12 lg:py-16">
+      <p class="kicker">Your data</p>
+      <h2 id="h-data" class="display text-3xl lg:text-5xl mt-3 mb-6">Local first, by design</h2>
+      <div class="max-w-3xl">
+        <ul class="marked">
+          <li>Your journal, calculator inputs, alerts and settings are stored <strong>on your
+              device only</strong>. fxx v1 has no user database and no sync server.</li>
+          <li>No analytics, no advertising, no tracking and no profiling. Nothing you type into
+              fxx is sold or shared.</li>
+          <li>You can use the whole app as a guest, without signing in. Signing in with Google is
+              optional and currently only identifies you for a planned future sync feature; it
+              does not move your data anywhere today.</li>
+          <li>Public data feeds are requested without your personal details (the request carries
+              your IP address and a generic app user-agent, as any web request does).</li>
+          <li>Uninstalling the app, or clearing its data, deletes everything fxx holds locally.</li>
+        </ul>
+        <p class="mt-6">
+          <a class="btn" href="privacy.html">Read the full privacy policy</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Availability -->
+  <section class="rule-t" aria-labelledby="h-avail">
+    <div class="wrap py-12 lg:py-16">
+      <p class="kicker">Availability</p>
+      <h2 id="h-avail" class="display text-3xl lg:text-5xl mt-3 mb-6">Android, offline-capable</h2>
+      <dl class="max-w-3xl text-sm">
+        <div class="rule-b py-3 flex flex-wrap gap-x-6">
+          <dt class="kicker w-40">Platform</dt>
+          <dd class="m-0">Android 7.0 and newer (minSdk 24)</dd>
+        </div>
+        <div class="rule-b py-3 flex flex-wrap gap-x-6">
+          <dt class="kicker w-40">Language</dt>
+          <dd class="m-0">Arabic first, right-to-left interface</dd>
+        </div>
+        <div class="rule-b py-3 flex flex-wrap gap-x-6">
+          <dt class="kicker w-40">Works offline</dt>
+          <dd class="m-0">The journal, calculator, checklist and alerts need no connection; only live prices and the calendar feed do</dd>
+        </div>
+        <div class="rule-b py-3 flex flex-wrap gap-x-6">
+          <dt class="kicker w-40">Distribution</dt>
+          <dd class="m-0">Installed directly from the APK file shared by the developer</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="rule-t" aria-labelledby="h-contact">
+    <div class="wrap py-12 lg:py-16">
+      <p class="kicker">Contact</p>
+      <h2 id="h-contact" class="display text-3xl lg:text-5xl mt-3 mb-5">Support and questions</h2>
+      <p class="max-w-3xl muted">
+        For help with sign-in, a bug report, or any privacy question, write to the address below.
+        This is the same address shown as the support contact on the Google sign-in screen.
+      </p>
+      <p class="mt-6"><a class="btn" href="mailto:amworxx@gmail.com">amworxx@gmail.com</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rule-t">
+  <div class="wrap py-10 text-sm muted">
+    <p class="m-0">
+      <strong class="display" style="color:var(--ink)">fxx</strong> — built by Abdulrahman Mustafa (AMWORX).
+      <a href="privacy.html">Privacy policy</a>.
+    </p>
+    <p class="mt-3">
+      Price data from public feeds (biquote.io, with gold-api.com as a fallback); economic calendar
+      data from financecalendar.com and the Forex Factory weekly calendar feed. Trademarks belong to
+      their owners. fxx is not affiliated with, endorsed by, or sponsored by Google LLC.
+    </p>
+    <p class="mt-3">© <span id="y">2026</span> AMWORX. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
